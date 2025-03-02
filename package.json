@@ -1,0 +1,30 @@
+{
+  "name": "academic-portal",
+  "version": "0.0.1",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "test": "concurrently \"dir\"",
+    "install:all": "npm install --workspaces",
+    "start:node": "npm run start --workspace=backend",
+    "start:vue": "npm run dev --workspace=frontend",
+    "start:all": "concurrently \"npm run start:node\" \"npm run start:vue\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingOfPlayer/AcademicPortal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingOfPlayer/AcademicPortal/issues"
+  },
+  "homepage": "https://github.com/KingOfPlayer/AcademicPortal#readme",
+  "description": ""
+}

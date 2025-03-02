@@ -528,6 +528,7 @@ coverage
 /frontend/cypress/screenshots/
 
 # Editor directories and files
+/frontend/.vscode
 /frontend/.vscode/*
 /frontend/!.vscode/extensions.json
 /frontend/.idea
