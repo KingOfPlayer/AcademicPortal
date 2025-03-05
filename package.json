@@ -10,9 +10,10 @@
   ],
   "scripts": {
     "test": "concurrently \"dir\"",
-    "install:all": "npm install --workspaces",
-    "start:node": "npm run start --workspace=backend",
-    "start:vue": "npm run dev --workspace=frontend",
+    "install:libs": "npm install --workspaces",
+    "install:database": "npm run install:database --workspace=backend",
+    "start:backend": "npm run start --workspace=backend",
+    "start:frontend": "npm run dev --workspace=frontend",
     "start:all": "concurrently \"npm run start:node\" \"npm run start:vue\""
   },
   "repository": {

@@ -540,3 +540,4 @@ coverage
 
 /frontend/*.tsbuildinfo
 /frontend/.vscode/extensions.json
+/backend/.env
