@@ -199,9 +199,9 @@ PublishScripts/
 # NuGet Symbol Packages
 *.snupkg
 # The packages folder can be ignored because of Package Restore
-**/[Pp]ackages/*
+# **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
-!**/[Pp]ackages/build/
+# !**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
@@ -509,34 +509,36 @@ coverage
 *.tsbuildinfo
 
 # Logs
-/frontend/logs
-/frontend/*.log
-/frontend/npm-debug.log*
-/frontend/yarn-debug.log*
-/frontend/yarn-error.log*
-/frontend/pnpm-debug.log*
-/frontend/lerna-debug.log*
+/packages/frontend/logs
+/packages/frontend/*.log
+/packages/frontend/npm-debug.log*
+/packages/frontend/yarn-debug.log*
+/packages/frontend/yarn-error.log*
+/packages/frontend/pnpm-debug.log*
+/packages/frontend/lerna-debug.log*
 
-/frontend/node_modules
-/frontend/.DS_Store
-/frontend/dist
-/frontend/dist-ssr
-/frontend/coverage
-/frontend/*.local
+/packages/frontend/node_modules
+/packages/frontend/.DS_Store
+/packages/frontend/dist
+/packages/frontend/dist-ssr
+/packages/frontend/coverage
+/packages/frontend/*.local
 
-/frontend/cypress/videos/
-/frontend/cypress/screenshots/
+/packages/frontend/cypress/videos/
+/packages/frontend/cypress/screenshots/
 
 # Editor directories and files
-/frontend/.vscode
-/frontend/.vscode/*
-/frontend/!.vscode/extensions.json
-/frontend/.idea
-/frontend/*.suo
-/frontend/*.ntvs*
-/frontend/*.njsproj
-/frontend/*.sln
-/frontend/*.sw?
+/packages/frontend/.vscode
+/packages/frontend/.vscode/*
+/packages/frontend/!.vscode/extensions.json
+/packages/frontend/.idea
+/packages/frontend/*.suo
+/packages/frontend/*.ntvs*
+/packages/frontend/*.njsproj
+/packages/frontend/*.sln
+/packages/frontend/*.sw?
 
-/frontend/*.tsbuildinfo
-/frontend/.vscode/extensions.json
+/packages/frontend/*.tsbuildinfo
+/packages/frontend/.vscode/extensions.json
+/packages/backend/src/.env
+/packages/backend/dist/
