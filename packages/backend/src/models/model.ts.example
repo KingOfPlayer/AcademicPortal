@@ -1,0 +1,27 @@
+import { Schema, Model, model } from 'mongoose';
+
+interface I<Model_Name> {
+    <field_name>: <ts_type>;
+}
+
+interface I<Model_Name>Methods {
+    <model_method_name>(<args>): <output_type>;
+}
+
+interface <Model_Name>Model extends Model<I<Model_Name>, {}, I<Model_Name>Methods> {
+    <model_static_method_name>(<args>): <output_type>;
+}
+
+export const <Model_Name>Schema = new Schema<I<Model_Name>, <Model_Name>Model, I<Model_Name>Methods>({
+    <field_name>: { <options> },
+});
+
+<Model_Name>Schema.method('<model_method_name>', function <model_method_name>(<args>) {
+    <code>
+});
+
+<Model_Name>Schema.static('<model_method_name>', function <model_static_method_name>(<args>) {
+    <code>
+});
+
+export const <Model_name> = model<I<field_name>, <field_name>Model>('<collection_name>', <field_name>Schema);*/
