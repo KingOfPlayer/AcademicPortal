@@ -1,6 +1,7 @@
 import Fastify from 'fastify'
 import "./services/database-service"
 import { User } from "./models/user"
+
 const fastify = Fastify({
     logger: false
 })
