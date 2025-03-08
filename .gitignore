@@ -542,4 +542,4 @@ coverage
 /packages/frontend/.vscode/extensions.json
 /packages/backend/dist/
 /packages/frontend/dist/
-/**/.env
+/packages/**/.env
