@@ -540,5 +540,6 @@ coverage
 
 /packages/frontend/*.tsbuildinfo
 /packages/frontend/.vscode/extensions.json
-/packages/backend/src/.env
 /packages/backend/dist/
+/packages/frontend/dist/
+/**/.env
