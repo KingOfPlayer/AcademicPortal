@@ -1,0 +1,13 @@
+{
+  "name": "academic-portal-shared",
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
