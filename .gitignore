@@ -543,3 +543,4 @@ coverage
 /packages/backend/dist/
 /packages/frontend/dist/
 /packages/**/.env
+act.exe
