@@ -1,23 +1,36 @@
-import Fastify from 'fastify'
+import Fastify, { FastifyInstance } from 'fastify'
+import AutoLoad from '@fastify/autoload'
+import {join} from 'path'
+import dotenv from "dotenv";
+dotenv.config();
 import "./services/database-service"
-import { User } from "./models/user"
+import AuthenticationPlugin from "./plugins/auth-plugin"
 
-const fastify = Fastify({
-    logger: false
+let api_port:number  = parseInt(process.env.PORT!) ?? 3000;
+
+const server:FastifyInstance = Fastify({
+    logger: { level: 'info' }
 })
 
+server.register(AuthenticationPlugin);
+
 // Declare a route
-fastify.get('/', async function handler(request, reply) {
-    let _User = await User.findOne({});
-    return _User
+server.register(AutoLoad,{
+    dir: join(__dirname,'rotues'),
+    options: { prefix: "/api"},
+    forceESM: true
+});
+
+server.ready(()=>{
+    server.log.info(server.printRoutes())
 });
 
 // Run the server!
 (async () => {
     try {
-        await fastify.listen({ port: 3000 })
+        await server.listen({ port: api_port})
     } catch (err) {
-        fastify.log.error(err)
+        server.log.error(err)
         process.exit(1)
     }
 })();
