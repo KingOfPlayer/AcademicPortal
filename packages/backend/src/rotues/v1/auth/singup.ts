@@ -22,7 +22,7 @@ export default async function (fastify: FastifyInstance){
                     return reply.status(401);
                 }
             }catch(err:unknown){
-                return reply.status(500).send(err);
+                return reply.status(401);
             }
     });
 
