@@ -17,8 +17,7 @@ server.register(AuthenticationPlugin);
 // Declare a route
 server.register(AutoLoad,{
     dir: join(__dirname,'rotues'),
-    options: { prefix: "/api"},
-    forceESM: true
+    options: { prefix: "/api"}
 });
 
 server.ready(()=>{
