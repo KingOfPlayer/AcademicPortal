@@ -27,5 +27,9 @@
   ],
   "devDependencies": {
     "tsx": "^4.19.3"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
+    "jsonwebtoken": "^9.0.2"
   }
 }

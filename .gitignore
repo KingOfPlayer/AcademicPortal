@@ -545,3 +545,4 @@ coverage
 /packages/**/.env
 act.exe
 
+packages/**/request.rest
