@@ -5,7 +5,7 @@
   "scripts": {
     "build": "pnpm tsc --build",
     "start": "node ./dist/main.js",
-    "dev": "tsx ./src/main.ts"
+    "dev": "tsx watch ./src/main.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,8 +16,12 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@fastify/autoload": "^6.2.0",
+    "@types/ms": "^2.1.0",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
-    "mongoose": "^8.12.1"
+    "fastify-plugin": "^5.0.1",
+    "mongoose": "^8.12.1",
+    "soap": "^1.1.9"
   }
 }

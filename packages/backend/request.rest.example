@@ -1,0 +1,41 @@
+POST http://localhost:3000/api/v1/auth/singup
+{
+    "id_number":***,
+    "name":"***",
+    "surname":"***",    
+    "bornYear":***,
+    "age":***,
+    "email":"***",
+    "password":"***"
+}
+
+###
+
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "id_number":***,
+    "password":"***"
+}
+
+###
+
+POST http://localhost:3000/api/v1/auth/logout
+Authorization: Bearer ***
+
+###
+
+POST http://localhost:3000/api/v1/auth/token
+Content-Type: application/json
+
+{
+    "token":"***"
+}
+
+###
+
+
+
+GET  http://localhost:3000/api/v1/user/info
+Authorization: Bearer ***
