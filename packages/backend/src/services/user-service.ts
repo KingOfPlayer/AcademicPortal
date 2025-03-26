@@ -1,18 +1,5 @@
-import { Schema, Model, model } from 'mongoose';
 import { IUser, UserRoles, UserSchemaOptions } from '../models/user';
 import { UserDTO } from '../models/dtos/userDto';
-
-interface IUserMethods {
-
-}
-
-interface UserModel extends Model<IUser, {}, IUserMethods> {
-
-}
-
-const UserSchema = new Schema<IUser, UserModel, IUserMethods>(UserSchemaOptions);
-
-const User = model<IUser, UserModel>('users', UserSchema);
 
 export async function AddUser(userDto: UserDTO){
     const user = new User(userDto);

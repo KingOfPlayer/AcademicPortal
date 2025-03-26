@@ -3,24 +3,10 @@ import { IUser } from "../models/user";
 import { GetUser, GetUserRoles, GetUserWithSelectFields } from "./user-service";
 import jsonwebtoken from 'jsonwebtoken';
 
-import { Schema, Model, model } from 'mongoose';
-
 import dotenv from "dotenv";
 import { UserDTO } from "../models/dtos/userDto";
 import ms, { StringValue } from "ms";
 dotenv.config();
-
-interface ITokenMethods {
-
-}
-
-interface TokenModel extends Model<IToken, {}, ITokenMethods> {
-
-}
-
-const TokenSchema = new Schema<IToken, TokenModel, ITokenMethods>(TokenSchemaOptions);
-
-const Token = model<IToken, TokenModel>('tokens', TokenSchema);
 
 export async function GenerateRefleshJWT(user:IUser) {
     const userData = await GetUserWithSelectFields(user.id_number,['id_number']);

@@ -16,7 +16,7 @@ export default async function (fastify: FastifyInstance){
                 // Validate basic user information
                 const validation = await ValidateUserOnEgov(User);
                 if(validation){
-                    User.roles=[UserRoles[3]];// Default applicant for now
+                    User.roles=[UserRoles.Applicant];// Default applicant for now
                     await AddUser(User);// Save user
                 }else{
                     return reply.status(401);

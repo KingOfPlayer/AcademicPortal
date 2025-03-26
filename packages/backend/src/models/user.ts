@@ -1,4 +1,11 @@
-export const UserRoles = ['admin', 'administrator', 'jury', 'applicant']
+import { Schema, Model, model } from 'mongoose';
+
+export enum UserRoles {
+    Admin = 'admin',
+    Administrator = 'administrator',
+    Jury = 'jury',
+    Applicant = 'applicant'
+  }
 
 export interface IUser{
     roles?: [string];
@@ -14,7 +21,7 @@ export interface IUser{
 }
 
 export const UserSchemaOptions = {
-    roles:{ type: [String], enum: UserRoles, required: true },
+    roles:{ type: [String], enum: Object.values(UserRoles), required: true },
 
     id_number: { type: Number, required: true , index:{unique:true}},
     name: { type: String, required: true },
@@ -25,3 +32,15 @@ export const UserSchemaOptions = {
     email: { type: String },
     password: { type: String }
 };
+
+interface IUserMethods {
+
+}
+
+interface UserModel extends Model<IUser, {}, IUserMethods> {
+
+}
+
+const UserSchema = new Schema<IUser, UserModel, IUserMethods>(UserSchemaOptions);
+
+const User = model<IUser, UserModel>('users', UserSchema);
