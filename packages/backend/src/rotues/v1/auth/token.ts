@@ -1,9 +1,4 @@
 import { FastifyInstance } from "fastify";
-import { IUser } from "../../../models/user";
-import { GetUser } from "../../../services/user-service";
-import jsonwebtoken from 'jsonwebtoken';
-import { UserDTO } from "../../../models/dtos/userDto";
-import { FastifyAuthPlugin } from "../../../plugins/auth-plugin";
 import { IToken } from "../../../models/token";
 import { GenerateAccessJWT, ValidateRefleshJWT } from "../../../services/auth-service";
 

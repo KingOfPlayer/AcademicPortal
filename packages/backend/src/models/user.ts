@@ -20,7 +20,7 @@ export interface IUser{
     password?: string;
 }
 
-export const UserSchemaOptions = {
+const UserSchemaOptions = {
     roles:{ type: [String], enum: Object.values(UserRoles), required: true },
 
     id_number: { type: Number, required: true , index:{unique:true}},
@@ -43,4 +43,4 @@ interface UserModel extends Model<IUser, {}, IUserMethods> {
 
 const UserSchema = new Schema<IUser, UserModel, IUserMethods>(UserSchemaOptions);
 
-const User = model<IUser, UserModel>('users', UserSchema);
+export const User = model<IUser, UserModel>('users', UserSchema);

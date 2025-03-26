@@ -1,4 +1,4 @@
-import { IToken, TokenSchemaOptions } from "../models/token";
+import { IToken, Token } from "../models/token";
 import { IUser } from "../models/user";
 import { GetUser, GetUserRoles, GetUserWithSelectFields } from "./user-service";
 import jsonwebtoken from 'jsonwebtoken';

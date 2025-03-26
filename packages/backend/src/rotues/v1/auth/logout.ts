@@ -1,7 +1,4 @@
 import { FastifyInstance } from "fastify";
-import AutoLoad from '@fastify/autoload'
-import {join} from 'path'
-import { FastifyAuthPlugin } from "../../../plugins/auth-plugin";
 import { RemoveRefleshJWT, ValidateRefleshJWT } from "../../../services/auth-service";
 export default async function (fastify: FastifyInstance){
     //Logout 

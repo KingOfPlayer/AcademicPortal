@@ -1,4 +1,4 @@
-import { IUser, UserRoles, UserSchemaOptions } from '../models/user';
+import { IUser, User, UserRoles } from '../models/user';
 import { UserDTO } from '../models/dtos/userDto';
 
 export async function AddUser(userDto: UserDTO){

@@ -5,7 +5,7 @@ export interface IToken{
     token?: string;
 }
 
-export const TokenSchemaOptions = {
+const TokenSchemaOptions = {
     token: { type: String, required: true , index:{unique:true}},
 };
 
@@ -19,4 +19,4 @@ interface TokenModel extends Model<IToken, {}, ITokenMethods> {
 
 const TokenSchema = new Schema<IToken, TokenModel, ITokenMethods>(TokenSchemaOptions);
 
-const Token = model<IToken, TokenModel>('tokens', TokenSchema);
+export const Token = model<IToken, TokenModel>('tokens', TokenSchema);

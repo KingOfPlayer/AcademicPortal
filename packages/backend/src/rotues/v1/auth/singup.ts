@@ -1,6 +1,4 @@
 import { FastifyInstance } from "fastify";
-import AutoLoad from '@fastify/autoload'
-import {join} from 'path'
 import { IUser, UserRoles } from "../../../models/user";
 import { ValidateUserOnEgov } from "../../../services/egov-service";
 import { UserDTO } from "../../../models/dtos/userDto";

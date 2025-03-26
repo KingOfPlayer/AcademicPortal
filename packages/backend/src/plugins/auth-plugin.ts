@@ -1,7 +1,6 @@
 import fp from 'fastify-plugin';
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { ValidateAccessJWT } from '../services/auth-service';
-import { IUser } from '../models/user';
 
 interface AuthenticationPluginOptions {
 
