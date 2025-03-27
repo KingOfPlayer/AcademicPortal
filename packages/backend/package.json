@@ -5,7 +5,8 @@
   "scripts": {
     "build": "pnpm tsc --build",
     "start": "node ./dist/main.js",
-    "dev": "tsx watch ./src/main.ts"
+    "dev": "tsx watch ./src/main.ts",
+    "playground": "tsx watch ./src/playground.ts"
   },
   "author": "",
   "license": "ISC",

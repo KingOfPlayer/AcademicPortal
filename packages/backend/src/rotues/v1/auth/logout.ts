@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { RemoveRefleshJWT, ValidateRefleshJWT } from "../../../services/auth-service";
+import { DeleteRefleshJWT, ValidateRefleshJWT } from "../../../services/auth-service";
 export default async function (fastify: FastifyInstance){
     //Logout 
     fastify.post("/logout",async (request, response)=>{
@@ -10,7 +10,7 @@ export default async function (fastify: FastifyInstance){
             const user = await ValidateRefleshJWT(refleshToken); 
             if(user != undefined){
                 // Remove reflesh token
-                RemoveRefleshJWT(refleshToken);
+                DeleteRefleshJWT(refleshToken);
                 return response.status(200).send();
             }
         }

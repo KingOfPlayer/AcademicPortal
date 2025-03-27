@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { IUser, UserRoles } from "../../../models/user";
 import { ValidateUserOnEgov } from "../../../services/egov-service";
-import { UserDTO } from "../../../models/dtos/userDto";
+import { UserDTO } from "../../../models/dtos/user-dto";
 import { AddUser } from "../../../services/user-service";
 
 export default async function (fastify: FastifyInstance){

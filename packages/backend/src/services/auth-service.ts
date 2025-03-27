@@ -4,8 +4,8 @@ import { GetUser, GetUserRoles, GetUserWithSelectFields } from "./user-service";
 import jsonwebtoken from 'jsonwebtoken';
 
 import dotenv from "dotenv";
-import { UserDTO } from "../models/dtos/userDto";
-import ms, { StringValue } from "ms";
+import { UserDTO } from "../models/dtos/user-dto";
+import { StringValue } from "ms";
 dotenv.config();
 
 export async function GenerateRefleshJWT(user:IUser) {
@@ -28,7 +28,7 @@ export async function ValidateRefleshJWT(jwtToken:string):Promise<IUser | undefi
     }
 }
 
-export async function RemoveRefleshJWT(jwtToken:string){
+export async function DeleteRefleshJWT(jwtToken:string){
     await Token.deleteOne({token:jwtToken});
 }
 
