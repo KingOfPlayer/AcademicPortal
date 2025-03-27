@@ -2,7 +2,7 @@ import "./services/database-service"
 import { ActivityCategory } from "./models/activity-category"
 import { ActivityCategoryDTO } from "./models/dtos/activity-category-dto"
 import { Activity } from "./models/activity"
-import { AddActivityCategory, GetActivityCategory } from "./services/activity-service";
+import { AddActivityCategory, GetActivity, GetActivityCategory } from "./services/activity-service";
 
 let testActivityCategory:ActivityCategoryDTO;
 testActivityCategory = {
@@ -19,4 +19,5 @@ testActivityCategory = {
 (async()=>{
     await AddActivityCategory(testActivityCategory);
     console.log(await GetActivityCategory("A"));
+    console.log(await GetActivity("A",1))
 })()

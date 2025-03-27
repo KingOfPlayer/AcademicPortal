@@ -8,8 +8,10 @@ export async function GetActivityCategory(Code:String):Promise<ActivityCategoryD
     return activityCategoryDTO;
 }
 
-async function GetActivity(Code:String,ID:Number){
-
+export async function GetActivity(Code:String,ID:number):Promise<Activity>{
+    const activityCategory = await ActivityCategory.findOne({Code:Code});
+    const activity = activityCategory?.activities.find((activity)=>{return activity.ID == ID}) as Activity;
+    return activity;
 }
 
 export async function AddActivityCategory(activityCategory:ActivityCategoryDTO) {
