@@ -23,22 +23,10 @@ export async function AddActivityCategory(activityCategory:ActivityCategoryDTO) 
     }
 }
 
-async function AddActivity(Code:String,ID:Number){
-
-}
-
-async function DeleteActivityCategory(Code:String){
+export async function DeleteActivityCategory(Code:String){
     await ActivityCategory.deleteOne({Code:Code});
 }
 
-async function DeleteActivity(Code:String,ID:Number){
-    await ActivityCategory.deleteOne({Code:Code});
-}
-
-async function UpdateActivityCategory(Code:String){
-    
-}
-
-async function UpdateActivity(Code:String,ID:Number){
-
+export async function UpdateActivityCategory(activityCategory:ActivityCategoryDTO){
+    await ActivityCategory.updateOne({Code:activityCategory.Code},activityCategory);
 }

@@ -2,7 +2,7 @@ import "./services/database-service"
 import { ActivityCategory } from "./models/activity-category"
 import { ActivityCategoryDTO } from "./models/dtos/activity-category-dto"
 import { Activity } from "./models/activity"
-import { AddActivityCategory, GetActivity, GetActivityCategory } from "./services/activity-service";
+import { AddActivityCategory, GetActivity, GetActivityCategory, UpdateActivityCategory } from "./services/activity-service";
 
 let testActivityCategory:ActivityCategoryDTO;
 testActivityCategory = {
@@ -20,4 +20,8 @@ testActivityCategory = {
     await AddActivityCategory(testActivityCategory);
     console.log(await GetActivityCategory("A"));
     console.log(await GetActivity("A",1))
+    testActivityCategory.activities?.push(new Activity(4,"Test",60));
+    await UpdateActivityCategory(testActivityCategory);
+    console.log(await GetActivityCategory("A"));
+    console.log(await GetActivity("A",4))
 })()
