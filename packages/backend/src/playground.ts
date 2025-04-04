@@ -4,6 +4,7 @@ import { ActivityCategoryDTO } from "./models/dtos/activity-category-dto"
 import { Activity } from "./models/activity"
 import { AddActivityCategory, GetActivity, GetActivityCategory, UpdateActivityCategory } from "./services/activity-service";
 
+/* Activity Test */
 let testActivityCategory:ActivityCategoryDTO;
 testActivityCategory = {
     Code:"A",
@@ -25,3 +26,4 @@ testActivityCategory = {
     console.log(await GetActivityCategory("A"));
     console.log(await GetActivity("A",4))
 })()
+
