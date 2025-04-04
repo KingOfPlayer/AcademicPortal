@@ -5,9 +5,9 @@ export enum UserRoles {
     Administrator = 'administrator',
     Jury = 'jury',
     Applicant = 'applicant'
-  }
+}
 
-export interface IUser{
+export interface IUser {
     roles?: string[];
 
     id_number?: number;
@@ -21,9 +21,9 @@ export interface IUser{
 }
 
 const UserSchemaOptions = {
-    roles:{ type: [String], enum: Object.values(UserRoles), required: true },
+    roles: { type: [String], enum: Object.values(UserRoles), required: true },
 
-    id_number: { type: Number, required: true , index:{unique:true}},
+    id_number: { type: Number, required: true, index: { unique: true } },
     name: { type: String, required: true },
     surname: { type: String, required: true },
     bornYear: { type: Number, required: true },
