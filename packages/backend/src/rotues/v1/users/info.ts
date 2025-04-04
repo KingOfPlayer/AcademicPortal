@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { FastifyAuthPlugin } from "../../../plugins/auth-plugin";
-import { UserDTO } from "../../../models/dtos/userDto";
+import { UserDTO } from "../../../models/dtos/user-dto";
 
 export default async function (fastify: FastifyInstance & FastifyAuthPlugin){
     //Return user info

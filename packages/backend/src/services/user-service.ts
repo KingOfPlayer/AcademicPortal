@@ -1,5 +1,5 @@
 import { IUser, User, UserRoles } from '../models/user';
-import { UserDTO } from '../models/dtos/userDto';
+import { UserDTO } from '../models/dtos/user-dto';
 
 export async function AddUser(userDto: UserDTO){
     const user = new User(userDto);
@@ -12,7 +12,7 @@ export async function GetUser(ID_number?:Number):Promise<IUser>{
     return userDto;
 }
 
-export async function GetUserRoles(ID_number?:Number):Promise<[string] | undefined>{
+export async function GetUserRoles(ID_number?:Number):Promise<string[] | undefined>{
     return (await GetUserWithSelectFields(ID_number,["roles"])).roles;
 }
 

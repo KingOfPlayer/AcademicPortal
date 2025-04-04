@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { IUser } from "../../../models/user";
 import { GetUser } from "../../../services/user-service";
-import { UserDTO } from "../../../models/dtos/userDto";
+import { UserDTO } from "../../../models/dtos/user-dto";
 import { FastifyAuthPlugin } from "../../../plugins/auth-plugin";
 import { GenerateRefleshJWT } from "../../../services/auth-service";
 
