@@ -2,7 +2,7 @@
   <div class="login-container">
     <div class="login-card">
       <div class="logo-container">
-        <img src="/packages/frontend/src/assets/university-logo.png " alt="University Logo" class="university-logo" />
+        <img src="../assets/university-logo.png" alt="University Logo" class="university-logo" />
       </div>
       
       <h1 class="title">Sistem Girişi</h1>
