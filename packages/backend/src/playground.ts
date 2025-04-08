@@ -1,22 +1,27 @@
+import { PointTableDTO } from "./models/dtos/point-table-dto";
 import { PointMultiplier } from "./models/point-multiplier";
 import { PointTable } from "./models/point-table";
 import "./services/database-service"
 import { evaluate } from "mathjs"
-
-let result = evaluate('(5 + 10) > 12');
-console.log(result);
+import { GetPointMultiplier, GetPointTable, UpdatePointTable } from "./services/point-service";
 
 // PointMultiplier Test
-const newPointTable = new PointTable();
-newPointTable.pointMultipliers = [
-    new PointMultiplier("1","1"),
-    new PointMultiplier("2","0.8"),
-    new PointMultiplier("3","0.6"),
-    new PointMultiplier("4","0.5"),
-    new PointMultiplier("5-9","1/people"),
-    new PointMultiplier("10","1"),
-]
-console.log(newPointTable.GetPointMultipler(5));
+(async()=>{
+    let newPointTable:PointTableDTO = {};
+    newPointTable.pointMultipliers = [
+        new PointMultiplier("1","1"),
+        new PointMultiplier("2","0.8"),
+        new PointMultiplier("3","0.6"),
+        new PointMultiplier("4","0.5"),
+        new PointMultiplier("5-9","1/people"),
+        new PointMultiplier("10","1"),
+    ];
+    const newPointTableDTO = newPointTable as PointTableDTO
+    await UpdatePointTable(newPointTable);
+    const pointTable = await GetPointTable();
+    console.log(pointTable);
+    console.log(await GetPointMultiplier(5));
+})();
 
 // Activity Test
 /*
