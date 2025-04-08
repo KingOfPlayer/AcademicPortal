@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { PointTable } from './point-table';
 import { PointMultiplier } from './point-multiplier';
 
-describe('PointTable Test', () => {
+describe('Point Table Test', () => {
     it('PointTable Create', async () => {
         const pointTable = new PointTable();
         pointTable.pointMultipliers = [
@@ -16,15 +16,15 @@ describe('PointTable Test', () => {
         const savedPointTable = await pointTable.save();
 
 
-        expect(savedPointTable.pointMultipliers != null).toBe(true);
+        expect(savedPointTable.pointMultipliers).toBeDefined();
         expect(savedPointTable.pointMultipliers.length).toBe(6);
-        expect(savedPointTable.pointMultipliers[3].peopleCountCondition == "4").toBe(true);
+        expect(savedPointTable.pointMultipliers[3].peopleCountCondition).toBe("4");
     });
 
-    it('PointTable GetPointTable', async () => {
+    it('PointTable FindOne', async () => {
         const pointTable = await PointTable.findOne();
-        expect(pointTable?.pointMultipliers[4].peopleCountCondition == "5-9").toBe(true);
+        expect(pointTable?.pointMultipliers[4].peopleCountCondition).toBe("5-9");
         expect(pointTable?.GetPointMultiplier(4)).toBe(0.5);
-        expect(pointTable?.GetPointMultiplier(5)).toBe(1/5);
+        expect(pointTable?.GetPointMultiplier(5)).toBe(1 / 5);
     });
 });

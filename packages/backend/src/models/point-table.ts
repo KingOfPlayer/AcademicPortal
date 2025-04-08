@@ -23,8 +23,8 @@ PointTableSchema.method("GetPointMultiplier", function (PeopleCount: number) {
     const pointMultiplier = this.pointMultipliers.find((v: PointMultiplier, i: number) => {
         return v.MatchRange(PeopleCount);
     });
-    
-    if(pointMultiplier == null){
+
+    if (pointMultiplier == null) {
         throw new Error("Suitable Multiplier")
     }
 
