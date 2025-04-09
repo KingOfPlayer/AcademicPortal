@@ -1,3 +1,3 @@
-import { IUser } from "../user"
+import { IUser } from "../user";
 
 export type UserDTO = Partial<IUser>;

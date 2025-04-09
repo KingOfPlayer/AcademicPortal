@@ -1,26 +1,27 @@
 import { PointTableDTO } from "./models/dtos/point-table-dto";
 import { PointMultiplier } from "./models/point-multiplier";
-import { PointTable } from "./models/point-table";
-import "./services/database-service"
-import { evaluate } from "mathjs"
-import { GetPointMultiplier, GetPointTable, UpdatePointTable } from "./services/point-service";
+import "./services/database-service";
+import {
+  GetPointMultiplier,
+  GetPointTable,
+  UpdatePointTable,
+} from "./services/point-service";
 
 // PointMultiplier Test
-(async()=>{
-    let newPointTable:PointTableDTO = {};
-    newPointTable.pointMultipliers = [
-        new PointMultiplier("1","1"),
-        new PointMultiplier("2","0.8"),
-        new PointMultiplier("3","0.6"),
-        new PointMultiplier("4","0.5"),
-        new PointMultiplier("5-9","1/people"),
-        new PointMultiplier("10","1"),
-    ];
-    const newPointTableDTO = newPointTable as PointTableDTO
-    await UpdatePointTable(newPointTable);
-    const pointTable = await GetPointTable();
-    console.log(pointTable);
-    console.log(await GetPointMultiplier(5));
+(async () => {
+  const newPointTable: PointTableDTO = {};
+  newPointTable.pointMultipliers = [
+    new PointMultiplier("1", "1"),
+    new PointMultiplier("2", "0.8"),
+    new PointMultiplier("3", "0.6"),
+    new PointMultiplier("4", "0.5"),
+    new PointMultiplier("5-9", "1/people"),
+    new PointMultiplier("10", "1"),
+  ];
+  await UpdatePointTable(newPointTable);
+  const pointTable = await GetPointTable();
+  console.log(pointTable);
+  console.log(await GetPointMultiplier(5));
 })();
 
 // Activity Test
@@ -52,5 +53,3 @@ testActivityCategory = {
     console.log(await GetActivity("A", 4))
 })()
 */
-
-
