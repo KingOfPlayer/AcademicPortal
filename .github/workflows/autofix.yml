@@ -1,19 +1,23 @@
-name: autofix.ci
+name: Autofix
 
 on:
-    pull_request:
-        branches: 
-            - main
-            - development
-    push:
-        branches: 
-            - main
-            - development
-    
+  pull_request:
+
 jobs:
+  setup:
+    uses: ./.github/workflows/setup.yml
+
   autofix:
+    needs: setup
     runs-on: self-hosted
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
-      - run: cargo fmt
+      - name: Lint
+        run: pnpm --recursive --fix
+
+      - name: Format
+        run: pnpm --recursive format
+
       - uses: autofix-ci/action@v1

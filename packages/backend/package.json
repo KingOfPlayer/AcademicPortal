@@ -8,14 +8,20 @@
     "dev": "tsx watch ./src/main.ts",
     "dev:test:unit": "vitest",
     "test:unit": "vitest run",
-    "playground": "tsx watch ./src/playground.ts"
+    "playground": "tsx watch ./src/playground.ts",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
     "mongodb-memory-server": "^10.1.4",
+    "prettier": "^3.5.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "vitest": "^3.0.5"
