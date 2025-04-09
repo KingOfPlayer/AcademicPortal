@@ -1,0 +1,11 @@
+### Get all activities
+GET  http://localhost:3000/api/v1/activity/
+Authorization: Bearer ***
+
+### Get spesific activity
+GET  http://localhost:3000/api/v1/activity/A/4
+Authorization: Bearer ***
+
+### Get spesific activity
+GET  http://localhost:3000/api/v1/activity/A/4
+Authorization: Bearer ***

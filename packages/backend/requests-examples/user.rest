@@ -1,5 +1,3 @@
-### Need rest client extension in VSCode
-
 ### Singup
 POST http://localhost:3000/api/v1/auth/singup
 Content-Type: application/json
@@ -37,12 +35,4 @@ Content-Type: application/json
 
 ### Get user info
 GET  http://localhost:3000/api/v1/user/info
-Authorization: Bearer ***
-
-### Get all activities
-GET  http://localhost:3000/api/v1/activities/
-Authorization: Bearer ***
-
-### Get spesific activity
-GET  http://localhost:3000/api/v1/activities/A/4
 Authorization: Bearer ***

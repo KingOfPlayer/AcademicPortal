@@ -1,10 +1,36 @@
-import "./services/database-service"
+import { PointTableDTO } from "./models/dtos/point-table-dto";
+import { PointMultiplier } from "./models/point-multiplier";
+import "./services/database-service";
+import {
+  GetPointMultiplier,
+  GetPointTable,
+  UpdatePointTable,
+} from "./services/point-service";
+
+// PointMultiplier Test
+(async () => {
+  const newPointTable: PointTableDTO = {};
+  newPointTable.pointMultipliers = [
+    new PointMultiplier("1", "1"),
+    new PointMultiplier("2", "0.8"),
+    new PointMultiplier("3", "0.6"),
+    new PointMultiplier("4", "0.5"),
+    new PointMultiplier("5-9", "1/people"),
+    new PointMultiplier("10", "1"),
+  ];
+  await UpdatePointTable(newPointTable);
+  const pointTable = await GetPointTable();
+  console.log(pointTable);
+  console.log(await GetPointMultiplier(5));
+})();
+
+// Activity Test
+/*
 import { ActivityCategory } from "./models/activity-category"
 import { ActivityCategoryDTO } from "./models/dtos/activity-category-dto"
 import { Activity } from "./models/activity"
 import { AddActivityCategory, GetActivity, GetActivityCategory, UpdateActivityCategory } from "./services/activity-service";
 
-/* Activity Test */
 let testActivityCategory: ActivityCategoryDTO;
 testActivityCategory = {
     Code: "A",
@@ -26,4 +52,4 @@ testActivityCategory = {
     console.log(await GetActivityCategory("A"));
     console.log(await GetActivity("A", 4))
 })()
-
+*/
