@@ -1,0 +1,19 @@
+name: autofix.ci
+
+on:
+    pull_request:
+        branches: 
+            - main
+            - development
+    push:
+        branches: 
+            - main
+            - development
+    
+jobs:
+  autofix:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: cargo fmt
+      - uses: autofix-ci/action@v1
