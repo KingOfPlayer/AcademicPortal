@@ -1,28 +1,64 @@
-import { PointTableDTO } from "./models/dtos/point-table-dto";
-import { PointMultiplier } from "./models/point-multiplier";
+import { UserDTO } from "./models/dtos/user-dto";
+import { UserRoles } from "./models/user";
 import "./services/database-service";
 import {
-  GetPointMultiplier,
-  GetPointTable,
-  UpdatePointTable,
-} from "./services/point-service";
+  AddUser,
+  GetUser,
+  UpdateUser,
+  UpdateUserRole,
+} from "./services/user-service";
+
+// User Service Test
+(async () => {
+  const userDto = {} as UserDTO;
+  userDto.id_number = 12345678912;
+  userDto.name = "Test_Name";
+  userDto.surname = "Test_surname";
+  userDto.bornYear = 45; //temp
+  userDto.age = 60; //temp
+  userDto.email = "test@test.com"; //temp
+  userDto.password = "123456789"; //temp
+  userDto.roles = [UserRoles.Applicant];
+  await AddUser(userDto);
+
+  let finded_user = await GetUser(12345678912);
+  console.log(finded_user);
+
+  finded_user.name = "Changed_test";
+  await UpdateUser(finded_user);
+
+  finded_user = await GetUser(12345678912);
+  console.log(finded_user);
+
+  await UpdateUserRole(12345678912, [UserRoles.Admin]);
+  finded_user = await GetUser(12345678912);
+  console.log(finded_user);
+})();
 
 // PointMultiplier Test
-(async () => {
-  const newPointTable: PointTableDTO = {};
-  newPointTable.pointMultipliers = [
-    new PointMultiplier("1", "1"),
-    new PointMultiplier("2", "0.8"),
-    new PointMultiplier("3", "0.6"),
-    new PointMultiplier("4", "0.5"),
-    new PointMultiplier("5-9", "1/people"),
-    new PointMultiplier("10", "1"),
-  ];
-  await UpdatePointTable(newPointTable);
-  const pointTable = await GetPointTable();
-  console.log(pointTable);
-  console.log(await GetPointMultiplier(5));
-})();
+// import { PointTableDTO } from "./models/dtos/point-table-dto";
+// import { PointMultiplier } from "./models/point-multiplier";
+// import "./services/database-service";
+// import {
+//   GetPointMultiplier,
+//   GetPointTable,
+//   UpdatePointTable,
+// } from "./services/point-service";
+// (async () => {
+//   const newPointTable: PointTableDTO = {};
+//   newPointTable.pointMultipliers = [
+//     new PointMultiplier("1", "1"),
+//     new PointMultiplier("2", "0.8"),
+//     new PointMultiplier("3", "0.6"),
+//     new PointMultiplier("4", "0.5"),
+//     new PointMultiplier("5-9", "1/people"),
+//     new PointMultiplier("10", "1"),
+//   ];
+//   await UpdatePointTable(newPointTable);
+//   const pointTable = await GetPointTable();
+//   console.log(pointTable);
+//   console.log(await GetPointMultiplier(5));
+// })();
 
 // Activity Test
 /*

@@ -1,10 +1,10 @@
-import { Schema, model } from "mongoose";
+import { Schema, SchemaDefinition, model } from "mongoose";
 
 export interface IToken {
   token?: string;
 }
 
-const TokenSchemaOptions = {
+const TokenSchemaOptions: SchemaDefinition = {
   token: { type: String, required: true, index: { unique: true } },
 };
 

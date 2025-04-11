@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, SchemaDefinition } from "mongoose";
 
 export interface IActivity {
   ID: number;
@@ -6,7 +6,7 @@ export interface IActivity {
   point: number;
 }
 
-const ActivitySchemaOptions = {
+const ActivitySchemaOptions: SchemaDefinition = {
   ID: { type: Number, required: true, index: { unique: true } },
   description: { type: String, required: true },
   point: { type: Number, required: true },

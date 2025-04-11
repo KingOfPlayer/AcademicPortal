@@ -36,3 +36,16 @@ Content-Type: application/json
 ### Get user info
 GET  http://localhost:3000/api/v1/user/info
 Authorization: Bearer ***
+
+### User role update (Admin Role) 
+# Roles need be UserRoles class
+POST  http://localhost:3000/api/v1/user/update/roles
+Authorization: Bearer ***
+Content-Type: application/json
+
+{
+    "id_number":***,
+    "roles": [
+        ***
+    ]
+}

@@ -1,4 +1,10 @@
-import { Schema, model } from "mongoose";
+import { Schema, SchemaDefinition, model } from "mongoose";
+
+//TODO:
+// Password Hashing
+// bornYear rename bornDate and convert type number to date
+// Auto calculate age from bornDate
+// Password Restriction
 
 export enum UserRoles {
   Admin = "admin",
@@ -8,7 +14,7 @@ export enum UserRoles {
 }
 
 export interface IUser {
-  roles?: string[];
+  roles?: UserRoles[];
 
   id_number?: number;
   name?: string;
@@ -20,17 +26,27 @@ export interface IUser {
   password?: string;
 }
 
-const UserSchemaOptions = {
+const validateEmail = (email: string): boolean => {
+  return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/.test(email); // eslint-disable-line
+};
+
+const UserSchemaOptions: SchemaDefinition = {
   roles: { type: [String], enum: Object.values(UserRoles), required: true },
 
-  id_number: { type: Number, required: true, index: { unique: true } },
+  id_number: {
+    type: Number,
+    required: true,
+    index: { unique: true },
+    min: 10000000000,
+    max: 99999999999,
+  },
   name: { type: String, required: true },
   surname: { type: String, required: true },
   bornYear: { type: Number, required: true },
 
   age: { type: Number },
-  email: { type: String },
-  password: { type: String },
+  email: { type: String, required: true, validate: validateEmail },
+  password: { type: String, required: true },
 };
 
 const UserSchema = new Schema<IUser>(UserSchemaOptions);

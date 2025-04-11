@@ -1,11 +1,11 @@
-import { Schema, Model, model } from "mongoose";
+import { Schema, Model, model, SchemaDefinition } from "mongoose";
 import { PointMultiplier, PointMultiplierSchema } from "./point-multiplier";
 
 export interface IPointTable {
   pointMultipliers: PointMultiplier[];
 }
 
-const PointTableSchemaOptions = {
+const PointTableSchemaOptions: SchemaDefinition = {
   pointMultipliers: { type: [PointMultiplierSchema], required: true },
 };
 

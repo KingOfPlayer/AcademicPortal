@@ -1,5 +1,5 @@
 import { evaluate } from "mathjs";
-import { Schema } from "mongoose";
+import { Schema, SchemaDefinition } from "mongoose";
 
 type PeopleCountRange = string & { __brand: typeof _validateRange };
 
@@ -38,7 +38,7 @@ export interface IPointMultiplier {
   multiplier: string;
 }
 
-const PointMultiplierSchemaOptions = {
+const PointMultiplierSchemaOptions: SchemaDefinition = {
   peopleCountCondition: { type: String, required: true },
   multiplier: { type: String, required: true },
 };

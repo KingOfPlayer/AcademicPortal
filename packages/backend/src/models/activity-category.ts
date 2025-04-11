@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, SchemaDefinition, model } from "mongoose";
 import { IActivity, ActivitySchema } from "./activity";
 
 export interface IActivityCategory {
@@ -8,7 +8,7 @@ export interface IActivityCategory {
   activities: IActivity[];
 }
 
-const ActivityCategorySchemaOptions = {
+const ActivityCategorySchemaOptions: SchemaDefinition = {
   Code: { type: String, required: true },
   sectionName: { type: String, required: true },
   isActive: { type: Boolean, required: true },
