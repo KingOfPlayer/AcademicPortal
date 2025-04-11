@@ -14,7 +14,7 @@ export default async function (
     subEndpoint + "role",
     {
       preHandler: [
-        fastify.authentication([UserRoles.Admin, UserRoles.Administrator]),
+        fastify.authentication([UserRoles.Admin]),
       ],
     },
     async (request, reply) => {
