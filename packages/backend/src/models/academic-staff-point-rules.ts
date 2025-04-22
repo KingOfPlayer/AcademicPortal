@@ -1,5 +1,5 @@
 import { SchemaDefinition, InferSchemaType, Model, model, Schema } from "mongoose";
-import { StaffPosition } from "./academic-staff-discipline-rules";
+import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 export interface IAcademicStaffPointRules {
   expression: string;
@@ -58,8 +58,8 @@ export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicSta
   },
 };
 
-const AcademicStaffPointRulesSchema = new Schema<IAcademicStaffPointRules>(
-  AcademicStaffPointRulesSchemaOptions,
+export const AcademicStaffPointRulesSchema = new Schema<IAcademicStaffPointRules>(
+  AcademicStaffPointRulesSchemaOptions,{autoCreate:false}
 );
 
 export const AcademicStaffPointRules =

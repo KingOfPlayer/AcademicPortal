@@ -1,18 +1,12 @@
 import { model, Schema, SchemaDefinition } from "mongoose";
 import {
-  AcademicStaffActivityRulesOptions,
+  AcademicStaffActivityRulesSchema,
   IAcademicStaffActivityRules,
 } from "./academic-staff-activity-rules";
 import {
-  AcademicStaffPointRulesSchemaOptions,
+  AcademicStaffPointRulesSchema,
   IAcademicStaffPointRules,
 } from "./academic-staff-point-rules";
-
-export enum StaffPosition {
-  Lecturer = "Lecturer", // Dr. Öğr. Üyesi
-  AssociateProfessor = "AssociateProfessor", // Doçent
-  Professor = "AssociateProfessor", // Profesör
-}
 
 export interface IAcademicStaffDisciplineRules {
   description: string;
@@ -24,22 +18,22 @@ export const AcademicStaffDisciplineRulesOptions: SchemaDefinition<IAcademicStaf
   {
     description: { type: String, required: true },
     activityRules: {
-      type: [AcademicStaffActivityRulesOptions],
+      type: [AcademicStaffActivityRulesSchema],
       required: true,
     },
     pointRules: {
-      type: [AcademicStaffPointRulesSchemaOptions],
+      type: [AcademicStaffPointRulesSchema],
       required: true,
     },
   };
 
 const AcademicStaffDisciplineRulesSchema =
   new Schema<IAcademicStaffDisciplineRules>(
-    AcademicStaffDisciplineRulesOptions,
+    AcademicStaffDisciplineRulesOptions,{autoCreate:false}
   );
 
 export const AcademicStaffDisciplineRules =
   model<IAcademicStaffDisciplineRules>(
     "academic_staff_discipline",
-    AcademicStaffDisciplineRulesSchema,
+    AcademicStaffDisciplineRulesSchema
   );

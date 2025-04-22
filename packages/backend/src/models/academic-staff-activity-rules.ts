@@ -1,5 +1,5 @@
 import { model, Schema, SchemaDefinition } from "mongoose";
-import { StaffPosition } from "./academic-staff-discipline-rules";
+import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 export interface IAcademicStaffActivityRules {
   expression: string;
@@ -14,6 +14,6 @@ export const AcademicStaffActivityRulesSchemaOptions: SchemaDefinition<IAcademic
     minimumCount: { type: Number, required: true },
   };
 
-const AcademicStaffActivityRulesSchema = new Schema<IAcademicStaffActivityRules>(AcademicStaffActivityRulesSchemaOptions);
+export const AcademicStaffActivityRulesSchema = new Schema<IAcademicStaffActivityRules>(AcademicStaffActivityRulesSchemaOptions,{autoCreate:false});
 
 export const AcademicStaffActivityRules = model<IAcademicStaffActivityRules>("academic_staff_activity_rules",AcademicStaffActivityRulesSchema)

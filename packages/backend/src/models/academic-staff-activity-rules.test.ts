@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
-import { StaffPosition } from "./academic-staff-discipline-rules";
+import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 describe("Academic Staff Activity Rules", () => {
   it("Constructor Test", async () => {
