@@ -1,4 +1,4 @@
-import { SchemaDefinition } from "mongoose";
+import { SchemaDefinition, InferSchemaType, Model, model, Schema } from "mongoose";
 import { StaffPosition } from "./academic-staff-discipline-rules";
 
 export interface IAcademicStaffPointRules {
@@ -8,29 +8,63 @@ export interface IAcademicStaffPointRules {
   maxPoint: number;
 }
 
-export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicStaffPointRules> =
-  {
-    expression: { type: String, required: true },
-    positionType: { type: String, enum: StaffPosition, required: true },
-    minPoint: { type: Number, required: true },
-    maxPoint: { type: Number, required: true },
-  };
-
-export class AcademicStaffPointRules implements IAcademicStaffPointRules {
-  expression: string;
-  positionType: StaffPosition;
-  minPoint: number;
-  maxPoint: number;
-
-  constructor(
-    expression: string,
-    positionType: StaffPosition,
-    minPoint: number,
-    maxPoint: number,
-  ) {
-    this.expression = expression;
-    this.positionType = positionType;
-    this.minPoint = minPoint;
-    this.maxPoint = maxPoint;
+const ValidateExpressionRange = (range: string) => {
+  //Test format (A1-B2) or (B1)
+  // For now just a char activity category
+  if (!(/^[A-Z]\d+($|-[A-Z]\d+$)/gm.test(range))) {
+    throw new Error("Invalid Range");
   }
-}
+
+  //Test same category
+  const match_words = range.match(/[A-Z]+/gm);
+  if (match_words == null) {
+    throw new Error("Not Found Category");
+  } else if (match_words.length == 2 && match_words[0] != match_words[1]) {
+    throw new Error("Must Be Same Category");
+  }
+
+  const match_numbers = range.match(/\d+/gm);
+
+  if (match_numbers == null) {
+    throw new Error("Not Found Number of Range");
+  }
+  //
+  if (+match_numbers[0] < 0 || +match_numbers[1] < 0)
+    throw new Error("Range not be able to zero or below");
+
+  if (+match_numbers[0] > +match_numbers[1]) {
+    throw new Error("Maximum cannot be below the minimum");
+  }
+};
+
+export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicStaffPointRules> =
+{
+  expression: { type: String, required: true, validate: ValidateExpressionRange },
+  positionType: { type: String, enum: StaffPosition, required: true },
+  minPoint: {
+    type: Number, required: true,
+    validate: function (this: IAcademicStaffPointRules, v: number) {
+      if (v < 0) // can 0
+        throw new Error("Range not be able to zero or below");
+      if (this.maxPoint < v)
+        throw new Error("Minimum Point cannot be able to above maximum point");
+    }
+  },
+  maxPoint: {
+    type: Number, required: true,
+    validate: function (this: IAcademicStaffPointRules, v: number) {
+      if (v < 0) // can 0
+        throw new Error("Range not be able to zero or below");
+      if (this.minPoint > v)
+        throw new Error("Maximum Point cannot be able to under minimum point");
+    }
+  },
+};
+
+const AcademicStaffPointRulesSchema = new Schema<IAcademicStaffPointRules>(
+  AcademicStaffPointRulesSchemaOptions,
+);
+
+export const AcademicStaffPointRules =
+  model<IAcademicStaffPointRules>("academic_staff_point_rules", AcademicStaffPointRulesSchema);
+
