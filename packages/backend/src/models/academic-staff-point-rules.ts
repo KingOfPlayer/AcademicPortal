@@ -37,27 +37,24 @@ const ValidateExpressionRange = (range: string) => {
   }
 };
 
+function ValidateRange(this: IAcademicStaffPointRules, v: number) {
+  if (v < 0) // can 0
+    throw new Error("Range not be able to zero or below");
+  if (this.minPoint > this.maxPoint)
+    throw new Error("Maximum point cannot be able to under minimum point");
+}
+
 export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicStaffPointRules> =
 {
   expression: { type: String, required: true, validate: ValidateExpressionRange },
   positionType: { type: String, enum: StaffPosition, required: true },
   minPoint: {
     type: Number, required: true,
-    validate: function (this: IAcademicStaffPointRules, v: number) {
-      if (v < 0) // can 0
-        throw new Error("Range not be able to zero or below");
-      if (this.maxPoint < v)
-        throw new Error("Minimum Point cannot be able to above maximum point");
-    }
+    validate: ValidateRange
   },
   maxPoint: {
     type: Number, required: true,
-    validate: function (this: IAcademicStaffPointRules, v: number) {
-      if (v < 0) // can 0
-        throw new Error("Range not be able to zero or below");
-      if (this.minPoint > v)
-        throw new Error("Maximum Point cannot be able to under minimum point");
-    }
+    validate: ValidateRange
   },
 };
 
