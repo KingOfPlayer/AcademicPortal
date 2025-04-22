@@ -1,4 +1,4 @@
-import { SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition } from "mongoose";
 import { StaffPosition } from "./academic-staff-discipline-rules";
 
 export interface IAcademicStaffActivityRules {
@@ -7,25 +7,13 @@ export interface IAcademicStaffActivityRules {
   minimumCount: number;
 }
 
-export const AcademicStaffActivityRulesOptions: SchemaDefinition<IAcademicStaffActivityRules> =
+export const AcademicStaffActivityRulesSchemaOptions: SchemaDefinition<IAcademicStaffActivityRules> =
   {
     expression: { type: String, required: true },
     positionType: { type: String, enum: StaffPosition, required: true },
     minimumCount: { type: Number, required: true },
   };
 
-export class AcademicStaffActivityRules implements IAcademicStaffActivityRules {
-  expression: string;
-  positionType: StaffPosition;
-  minimumCount: number;
+const AcademicStaffActivityRulesSchema = new Schema<IAcademicStaffActivityRules>(AcademicStaffActivityRulesSchemaOptions);
 
-  constructor(
-    expression: string,
-    positionType: StaffPosition,
-    minimumCount: number,
-  ) {
-    this.expression = expression;
-    this.positionType = positionType;
-    this.minimumCount = minimumCount;
-  }
-}
+export const AcademicStaffActivityRules = model<IAcademicStaffActivityRules>("academic_staff_activity_rules",AcademicStaffActivityRulesSchema)

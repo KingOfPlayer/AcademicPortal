@@ -5,20 +5,23 @@ import {
 } from "./academic-staff-discipline-rules";
 import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
 import { AcademicStaffPointRules } from "./academic-staff-point-rules";
+import { expression } from "mathjs";
 
 describe("Academic Staff Discipline Rule Model", () => {
   it("Create", async () => {
     const staffDiscipline = new AcademicStaffDisciplineRules();
     staffDiscipline.description = "Sağlık Bilimleri";
     staffDiscipline.activityRules = [
-      new AcademicStaffActivityRules(
-        "A.1-A.2",
-        StaffPosition.AssociateProfessor,
-        200,
-      ),
+      new AcademicStaffActivityRules({
+        expression: "A1-A2",
+        positionType: StaffPosition.AssociateProfessor,
+        minimumCount: 200,
+      }),
     ];
     staffDiscipline.pointRules = [
-      new AcademicStaffPointRules("A.1-A.4", StaffPosition.Lecturer, 45, 0),
+      new AcademicStaffPointRules({
+        expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
+      }),
     ];
 
     await staffDiscipline.save();
@@ -38,7 +41,11 @@ describe("Academic Staff Discipline Rule Model", () => {
     });
 
     staffDiscipline?.activityRules.push(
-      new AcademicStaffActivityRules("A.1-A.2", StaffPosition.Lecturer, 200),
+      new AcademicStaffActivityRules({
+        expression: "A1-A2",
+        positionType: StaffPosition.Lecturer,
+        minimumCount: 200,
+      }),
     );
     await staffDiscipline?.save();
 

@@ -4,13 +4,13 @@ import { StaffPosition } from "./academic-staff-discipline-rules";
 
 describe("Academic Staff Activity Rules", () => {
   it("Constructor Test", async () => {
-    const academicStaffActivityRules: AcademicStaffActivityRules =
-      new AcademicStaffActivityRules(
-        "A.1-A.2",
-        StaffPosition.AssociateProfessor,
-        200,
-      );
+    const academicStaffActivityRules =
+      new AcademicStaffActivityRules({
+        expression: "A1-A2",
+        positionType: StaffPosition.AssociateProfessor,
+        minimumCount: 200,
+      });
 
-    expect(academicStaffActivityRules.expression).toBe("A.1-A.2");
+    expect(academicStaffActivityRules.expression).toBe("A1-A2");
   });
 });
