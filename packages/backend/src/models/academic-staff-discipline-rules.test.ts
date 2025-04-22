@@ -10,7 +10,7 @@ import { StaffPosition } from "./academic-staff-disicpline-utils";
 describe("Academic Staff Discipline Rule Model", () => {
   it("Create", async () => {
     const staffDiscipline = new AcademicStaffDisciplineRules();
-    staffDiscipline.description = "Sağlık Bilimleri";
+    staffDiscipline.disiciplineName = "Sağlık Bilimleri";
     staffDiscipline.activityRules = [
       new AcademicStaffActivityRules({
         expression: "A1-A2",
@@ -29,7 +29,7 @@ describe("Academic Staff Discipline Rule Model", () => {
 
   it("Find", async () => {
     const staffDiscipline = await AcademicStaffDisciplineRules.findOne({
-      description: "Sağlık Bilimleri",
+      disiciplineName: "Sağlık Bilimleri",
     });
 
     expect(staffDiscipline?.activityRules.length).toBe(1);
@@ -37,7 +37,7 @@ describe("Academic Staff Discipline Rule Model", () => {
 
   it("Update", async () => {
     let staffDiscipline = await AcademicStaffDisciplineRules.findOne({
-      description: "Sağlık Bilimleri",
+      disiciplineName: "Sağlık Bilimleri",
     });
 
     staffDiscipline?.activityRules.push(
@@ -50,7 +50,7 @@ describe("Academic Staff Discipline Rule Model", () => {
     await staffDiscipline?.save();
 
     staffDiscipline = await AcademicStaffDisciplineRules.findOne({
-      description: "Sağlık Bilimleri",
+      disiciplineName: "Sağlık Bilimleri",
     });
 
     expect(staffDiscipline?.activityRules.length).toBe(2);

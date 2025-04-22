@@ -9,14 +9,14 @@ import {
 } from "./academic-staff-point-rules";
 
 export interface IAcademicStaffDisciplineRules {
-  description: string;
+  disiciplineName: string;
   activityRules: IAcademicStaffActivityRules[];
   pointRules: IAcademicStaffPointRules[];
 }
 
 export const AcademicStaffDisciplineRulesOptions: SchemaDefinition<IAcademicStaffDisciplineRules> =
   {
-    description: { type: String, required: true },
+    disiciplineName: { type: String, required: true, unique:true },
     activityRules: {
       type: [AcademicStaffActivityRulesSchema],
       required: true,
