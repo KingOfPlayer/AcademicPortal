@@ -1,11 +1,6 @@
 import { describe, it, expect } from "vitest";
-import {
-  GetPointMultiplier,
-  GetPointTable,
-  UpdatePointTable,
-} from "./point-service";
-import { PointTableDTO } from "../models/dtos/point-table-dto";
-import { PointMultiplier } from "../models/point-multiplier";
+
+
 import { AcademicStaffDisciplineRules } from "../models/academic-staff-discipline-rules";
 import { AcademicStaffActivityRules } from "../models/academic-staff-activity-rules";
 import { StaffPosition } from "../models/academic-staff-disicpline-utils";
@@ -34,7 +29,7 @@ describe("Disicpline Rule Service Test", () => {
   });
 
   it("Disicpline Rule Update", async () => {
-    let staffDisciplineDTO = await GetDisciplineRule("Test 1");
+    const staffDisciplineDTO = await GetDisciplineRule("Test 1");
     staffDisciplineDTO!.disiciplineName = "asd";
     staffDisciplineDTO!.pointRules!.push(new AcademicStaffPointRules({"expression":"A1",positionType:StaffPosition.Professor, minPoint:0, maxPoint:45}));
     await UpdateDisciplineRule("Test 1",staffDisciplineDTO!);
@@ -60,7 +55,7 @@ describe("Disicpline Rule Service Test", () => {
     }) as AcademicStaffDisciplineRulesDTO;
     await AddDisciplineRule(staffDisciplineDTO);
 
-    let staffDisciplineDTOs = await GetAllDisciplineRules();
+    const staffDisciplineDTOs = await GetAllDisciplineRules();
     expect(staffDisciplineDTOs.length).toBe(2);
   });
 });

@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { AcademicStaffPointRules } from "./academic-staff-point-rules";
-import { max } from "mathjs";
 import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 describe("Academic Staff Point Rule", () => {

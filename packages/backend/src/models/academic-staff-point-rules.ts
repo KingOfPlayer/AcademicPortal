@@ -1,4 +1,4 @@
-import { SchemaDefinition, InferSchemaType, Model, model, Schema } from "mongoose";
+import { SchemaDefinition, model, Schema } from "mongoose";
 import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 export interface IAcademicStaffPointRules {

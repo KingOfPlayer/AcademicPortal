@@ -1,4 +1,4 @@
-import { AcademicStaffDisciplineRules, IAcademicStaffDisciplineRules } from "../models/academic-staff-discipline-rules";
+import { AcademicStaffDisciplineRules } from "../models/academic-staff-discipline-rules";
 import { AcademicStaffDisciplineRulesDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 
 export const AddDisciplineRule = async (DisciplineRule: AcademicStaffDisciplineRulesDTO) => {
@@ -7,7 +7,7 @@ export const AddDisciplineRule = async (DisciplineRule: AcademicStaffDisciplineR
 }
 
 export const UpdateDisciplineRule = async (DisciplineRuleName: string,DisciplineRule: AcademicStaffDisciplineRulesDTO) => {
-    let disciplineRule = await AcademicStaffDisciplineRules.findOne({ disiciplineName: DisciplineRuleName });
+    const disciplineRule = await AcademicStaffDisciplineRules.findOne({ disiciplineName: DisciplineRuleName });
 
     if(disciplineRule == null) throw new Error("When Discipline rules update, disciplineRules not found");
 
@@ -15,7 +15,7 @@ export const UpdateDisciplineRule = async (DisciplineRuleName: string,Discipline
     await disciplineRule!.save();
 }
 
-export const GetDisciplineRule = async (DisciplineName:String): Promise<AcademicStaffDisciplineRulesDTO|null> => {
+export const GetDisciplineRule = async (DisciplineName:string): Promise<AcademicStaffDisciplineRulesDTO|null> => {
     return await AcademicStaffDisciplineRules.findOne({disiciplineName:DisciplineName});
 }
 

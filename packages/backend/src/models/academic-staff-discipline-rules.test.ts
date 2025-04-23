@@ -4,7 +4,6 @@ import {
 } from "./academic-staff-discipline-rules";
 import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
 import { AcademicStaffPointRules } from "./academic-staff-point-rules";
-import { expression } from "mathjs";
 import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 describe("Academic Staff Discipline Rule Model", () => {

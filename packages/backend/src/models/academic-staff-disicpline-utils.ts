@@ -1,5 +1,5 @@
 export enum StaffPosition {
   Lecturer = "Lecturer", // Dr. Öğr. Üyesi
   AssociateProfessor = "AssociateProfessor", // Doçent
-  Professor = "AssociateProfessor", // Profesör
+  Professor = "Professor", // Profesör
 }
