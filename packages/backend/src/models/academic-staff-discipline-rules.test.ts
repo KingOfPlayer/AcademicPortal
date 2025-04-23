@@ -1,7 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  AcademicStaffDisciplineRules,
-} from "./academic-staff-discipline-rules";
+import { AcademicStaffDisciplineRules } from "./academic-staff-discipline-rules";
 import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
 import { AcademicStaffPointRules } from "./academic-staff-point-rules";
 import { StaffPosition } from "./academic-staff-disicpline-utils";
@@ -19,7 +17,10 @@ describe("Academic Staff Discipline Rule Model", () => {
     ];
     staffDiscipline.pointRules = [
       new AcademicStaffPointRules({
-        expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
+        expression: "A1-A4",
+        positionType: StaffPosition.Lecturer,
+        minPoint: 0,
+        maxPoint: 0,
       }),
     ];
 

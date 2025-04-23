@@ -16,7 +16,7 @@ export interface IAcademicStaffDisciplineRules {
 
 export const AcademicStaffDisciplineRulesOptions: SchemaDefinition<IAcademicStaffDisciplineRules> =
   {
-    disiciplineName: { type: String, required: true, unique:true },
+    disiciplineName: { type: String, required: true, unique: true },
     activityRules: {
       type: [AcademicStaffActivityRulesSchema],
       required: true,
@@ -29,11 +29,12 @@ export const AcademicStaffDisciplineRulesOptions: SchemaDefinition<IAcademicStaf
 
 const AcademicStaffDisciplineRulesSchema =
   new Schema<IAcademicStaffDisciplineRules>(
-    AcademicStaffDisciplineRulesOptions,{autoCreate:false}
+    AcademicStaffDisciplineRulesOptions,
+    { autoCreate: false },
   );
 
 export const AcademicStaffDisciplineRules =
   model<IAcademicStaffDisciplineRules>(
     "academic_staff_discipline",
-    AcademicStaffDisciplineRulesSchema
+    AcademicStaffDisciplineRulesSchema,
   );

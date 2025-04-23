@@ -11,7 +11,7 @@ export interface IAcademicStaffPointRules {
 const ValidateExpressionRange = (range: string) => {
   //Test format (A1-B2) or (B1)
   // For now just a char activity category
-  if (!(/^[A-Z]\d+($|-[A-Z]\d+$)/gm.test(range))) {
+  if (!/^[A-Z]\d+($|-[A-Z]\d+$)/gm.test(range)) {
     throw new Error("Invalid Range");
   }
 
@@ -38,30 +38,39 @@ const ValidateExpressionRange = (range: string) => {
 };
 
 function ValidateRange(this: IAcademicStaffPointRules, v: number) {
-  if (v < 0) // can 0
+  if (v < 0)
+    // can 0
     throw new Error("Range not be able to zero or below");
   if (this.minPoint > this.maxPoint)
     throw new Error("Maximum point cannot be able to under minimum point");
 }
 
 export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicStaffPointRules> =
-{
-  expression: { type: String, required: true, validate: ValidateExpressionRange },
-  positionType: { type: String, enum: StaffPosition, required: true },
-  minPoint: {
-    type: Number, required: true,
-    validate: ValidateRange
-  },
-  maxPoint: {
-    type: Number, required: true,
-    validate: ValidateRange
-  },
-};
+  {
+    expression: {
+      type: String,
+      required: true,
+      validate: ValidateExpressionRange,
+    },
+    positionType: { type: String, enum: StaffPosition, required: true },
+    minPoint: {
+      type: Number,
+      required: true,
+      validate: ValidateRange,
+    },
+    maxPoint: {
+      type: Number,
+      required: true,
+      validate: ValidateRange,
+    },
+  };
 
-export const AcademicStaffPointRulesSchema = new Schema<IAcademicStaffPointRules>(
-  AcademicStaffPointRulesSchemaOptions,{autoCreate:false}
+export const AcademicStaffPointRulesSchema =
+  new Schema<IAcademicStaffPointRules>(AcademicStaffPointRulesSchemaOptions, {
+    autoCreate: false,
+  });
+
+export const AcademicStaffPointRules = model<IAcademicStaffPointRules>(
+  "academic_staff_point_rules",
+  AcademicStaffPointRulesSchema,
 );
-
-export const AcademicStaffPointRules =
-  model<IAcademicStaffPointRules>("academic_staff_point_rules", AcademicStaffPointRulesSchema);
-

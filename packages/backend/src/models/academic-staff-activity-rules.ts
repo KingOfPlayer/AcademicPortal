@@ -10,7 +10,7 @@ export interface IAcademicStaffActivityRules {
 const ValidateExpressionRange = (range: string) => {
   //Test format (A1-B2) or (B1)
   // For now just a char activity category
-  if (!(/^[A-Z]\d+($|-[A-Z]\d+$)/gm.test(range))) {
+  if (!/^[A-Z]\d+($|-[A-Z]\d+$)/gm.test(range)) {
     throw new Error("Invalid Range");
   }
 
@@ -37,17 +37,27 @@ const ValidateExpressionRange = (range: string) => {
 };
 
 function ValidateRange(this: IAcademicStaffActivityRules, v: number) {
-  if (v <= 0)
-    throw new Error("Range not be able to zero or below");
+  if (v <= 0) throw new Error("Range not be able to zero or below");
 }
 
 export const AcademicStaffActivityRulesSchemaOptions: SchemaDefinition<IAcademicStaffActivityRules> =
-{
-  expression: { type: String, required: true, validate: ValidateExpressionRange },
-  positionType: { type: String, enum: StaffPosition, required: true },
-  minimumCount: { type: Number, required: true, validate: ValidateRange },
-};
+  {
+    expression: {
+      type: String,
+      required: true,
+      validate: ValidateExpressionRange,
+    },
+    positionType: { type: String, enum: StaffPosition, required: true },
+    minimumCount: { type: Number, required: true, validate: ValidateRange },
+  };
 
-export const AcademicStaffActivityRulesSchema = new Schema<IAcademicStaffActivityRules>(AcademicStaffActivityRulesSchemaOptions, { autoCreate: false });
+export const AcademicStaffActivityRulesSchema =
+  new Schema<IAcademicStaffActivityRules>(
+    AcademicStaffActivityRulesSchemaOptions,
+    { autoCreate: false },
+  );
 
-export const AcademicStaffActivityRules = model<IAcademicStaffActivityRules>("academic_staff_activity_rules", AcademicStaffActivityRulesSchema)
+export const AcademicStaffActivityRules = model<IAcademicStaffActivityRules>(
+  "academic_staff_activity_rules",
+  AcademicStaffActivityRulesSchema,
+);

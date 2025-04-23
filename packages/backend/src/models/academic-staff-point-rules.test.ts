@@ -4,9 +4,12 @@ import { StaffPosition } from "./academic-staff-disicpline-utils";
 
 describe("Academic Staff Point Rule", () => {
   it("Constructor Test", async () => {
-    const rule = new AcademicStaffPointRules(
-      { expression: "A1-A4", positionType: StaffPosition.Professor, minPoint: 1, maxPoint: 45 }
-    );
+    const rule = new AcademicStaffPointRules({
+      expression: "A1-A4",
+      positionType: StaffPosition.Professor,
+      minPoint: 1,
+      maxPoint: 45,
+    });
 
     await expect(rule.validate()).resolves.not.toThrow();
 
@@ -28,7 +31,7 @@ describe("Academic Staff Point Rule", () => {
     rule.minPoint = 0;
     rule.maxPoint = 0;
     await expect(rule.validate()).resolves.not.toThrow();
-    
+
     rule.minPoint = 45;
     rule.maxPoint = 0;
     await expect(rule.validate()).rejects.toThrow();

@@ -56,7 +56,7 @@ import "./services/database-service";
 //             }),
 //         ]
 //     });
-    
+
 //     await staffDiscipline.save();
 
 //     console.log(await AcademicStaffActivityRules.findOne());
