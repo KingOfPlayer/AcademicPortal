@@ -1,39 +1,101 @@
-import { UserDTO } from "./models/dtos/user-dto";
-import { UserRoles } from "./models/user";
 import "./services/database-service";
-import {
-  AddUser,
-  GetUser,
-  UpdateUser,
-  UpdateUserRole,
-} from "./services/user-service";
 
+//DisciplineRules service Test
+
+// import { AcademicStaffActivityRules } from "./models/academic-staff-activity-rules";
+// import { AcademicStaffDisciplineRules } from "./models/academic-staff-discipline-rules";
+// import { StaffPosition } from "./models/academic-staff-disicpline-utils";
+// import { AcademicStaffPointRules } from "./models/academic-staff-point-rules";
+// import { AcademicStaffDisciplineRulesDTO } from "./models/dtos/academic-staff-discipline-rules-dto";
+// import { AddDisciplineRule, GetAllDisciplineRule, GetDisciplineRule, UpdateDisciplineRule } from "./services/disicpline-rule-service";
+
+// (async () => {
+//     let staffDisciplineDTO = new AcademicStaffDisciplineRules({
+//                 disiciplineName: "Sağlık Bilimleri 2",
+//                 activityRules: [
+//                     new AcademicStaffActivityRules({
+//                         expression: "A1-A2",
+//                         positionType: StaffPosition.AssociateProfessor,
+//                         minimumCount: 200,
+//                     }),
+//                 ],
+//                 pointRules: [
+//                     new AcademicStaffPointRules({
+//                         expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
+//                     }),
+//                 ]
+//             }) as AcademicStaffDisciplineRulesDTO;
+//     try{
+//         await AddDisciplineRule(staffDisciplineDTO);
+//     }catch{
+//         console.log("already insertted");
+//     }
+
+//     console.log(await GetAllDisciplineRule());
+// })()
+
+//AcademicStaffDisciplineRules Model Test
+// import { AcademicStaffActivityRules } from "./models/academic-staff-activity-rules";
+// import { AcademicStaffDisciplineRules } from "./models/academic-staff-discipline-rules";
+// import { AcademicStaffPointRules } from "./models/academic-staff-point-rules";
+// import { StaffPosition } from "./models/academic-staff-disicpline-utils";
+
+// (async () => {
+//     const staffDiscipline = new AcademicStaffDisciplineRules({
+//         description: "Sağlık Bilimleri",
+//         activityRules: [
+//             new AcademicStaffActivityRules({
+//                 expression: "A1-A2",
+//                 positionType: StaffPosition.AssociateProfessor,
+//                 minimumCount: 200,
+//             }),
+//         ],
+//         pointRules: [
+//             new AcademicStaffPointRules({
+//                 expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
+//             }),
+//         ]
+//     });
+
+//     await staffDiscipline.save();
+
+//     console.log(await AcademicStaffActivityRules.findOne());
+// })();
+
+// import { UserDTO } from "./models/dtos/user-dto";
+// import { UserRoles } from "./models/user";
+// import {
+//   AddUser,
+//   GetUser,
+//   UpdateUser,
+//   UpdateUserRole,
+// } from "./services/user-service";
 // User Service Test
-(async () => {
-  const userDto = {} as UserDTO;
-  userDto.id_number = 12345678912;
-  userDto.name = "Test_Name";
-  userDto.surname = "Test_surname";
-  userDto.bornYear = 45; //temp
-  userDto.age = 60; //temp
-  userDto.email = "test@test.com"; //temp
-  userDto.password = "123456789"; //temp
-  userDto.roles = [UserRoles.Applicant];
-  await AddUser(userDto);
+// (async () => {
+//   const userDto = {} as UserDTO;
+//   userDto.id_number = 12345678912;
+//   userDto.name = "Test_Name";
+//   userDto.surname = "Test_surname";
+//   userDto.bornYear = 45; //temp
+//   userDto.age = 60; //temp
+//   userDto.email = "test@test.com"; //temp
+//   userDto.password = "123456789"; //temp
+//   userDto.roles = [UserRoles.Applicant];
+//   await AddUser(userDto);
 
-  let finded_user = await GetUser(12345678912);
-  console.log(finded_user);
+//   let finded_user = await GetUser(12345678912);
+//   console.log(finded_user);
 
-  finded_user.name = "Changed_test";
-  await UpdateUser(finded_user);
+//   finded_user.name = "Changed_test";
+//   await UpdateUser(finded_user);
 
-  finded_user = await GetUser(12345678912);
-  console.log(finded_user);
+//   finded_user = await GetUser(12345678912);
+//   console.log(finded_user);
 
-  await UpdateUserRole(12345678912, [UserRoles.Admin]);
-  finded_user = await GetUser(12345678912);
-  console.log(finded_user);
-})();
+//   await UpdateUserRole(12345678912, [UserRoles.Admin]);
+//   finded_user = await GetUser(12345678912);
+//   console.log(finded_user);
+// })();
 
 // PointMultiplier Test
 // import { PointTableDTO } from "./models/dtos/point-table-dto";

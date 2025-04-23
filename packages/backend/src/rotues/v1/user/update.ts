@@ -13,9 +13,7 @@ export default async function (
   fastify.post<{ Body: UserDTO }>(
     subEndpoint + "role",
     {
-      preHandler: [
-        fastify.authentication([UserRoles.Admin]),
-      ],
+      preHandler: [fastify.authentication([UserRoles.Admin])],
     },
     async (request, reply) => {
       try {

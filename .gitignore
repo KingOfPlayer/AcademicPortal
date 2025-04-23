@@ -546,3 +546,4 @@ coverage
 act.exe
 
 packages/**/request.rest
+packages/backend/requests-examples/*.rest
