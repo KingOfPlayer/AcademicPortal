@@ -1,6 +1,7 @@
 import { Activity } from "../models/activity";
 import { ActivityCategory } from "../models/activity-category";
 import { ActivityCategoryDTO } from "../models/dtos/activity-category-dto";
+import { ActivityDTO } from "../models/dtos/activity-dto";
 
 export async function GetActivityCategory(
   Code: string,
@@ -10,16 +11,16 @@ export async function GetActivityCategory(
   return activityCategoryDTO;
 }
 
-export async function GetAllActivityCategory(): Promise<ActivityCategoryDTO> {
+export async function GetAllActivityCategory(): Promise<ActivityCategoryDTO[]> {
   const activityCategories = await ActivityCategory.find();
-  return JSON.stringify(activityCategories) as ActivityCategoryDTO;
+  return activityCategories;
 }
 
-export async function GetActivity(Code: string, ID: number): Promise<Activity> {
+export async function GetActivity(Code: string, ID: number): Promise<ActivityDTO> {
   const activityCategory = await ActivityCategory.findOne({ Code: Code });
   const activity = activityCategory?.activities.find((activity) => {
     return activity.ID == ID;
-  }) as Activity;
+  }) as ActivityDTO;
   return activity;
 }
 

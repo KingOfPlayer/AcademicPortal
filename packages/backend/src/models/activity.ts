@@ -1,4 +1,4 @@
-import { Schema, SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition } from "mongoose";
 
 export interface IActivity {
   ID: number;
@@ -14,14 +14,4 @@ const ActivitySchemaOptions: SchemaDefinition = {
 
 export const ActivitySchema = new Schema<IActivity>(ActivitySchemaOptions);
 
-export class Activity implements IActivity {
-  ID!: number;
-  description!: string;
-  point!: number;
-
-  constructor(ID: number, description: string, point: number) {
-    this.ID = ID;
-    this.description = description;
-    this.point = point;
-  }
-}
+export const Activity = model<IActivity>("Activity",ActivitySchema);

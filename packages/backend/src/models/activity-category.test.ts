@@ -11,9 +11,9 @@ describe("Activity Category", () => {
       Code: "A",
       sectionName: "Makaleler",
       activities: [
-        new Activity(1, "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q1 olarak taranan dergide)", 60),
-        new Activity(2, "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q2 olarak taranan dergide)", 60),
-        new Activity(3, "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q3 olarak taranan dergide)", 60),
+        new Activity({ID:1, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q1 olarak taranan dergide)", point:60}),
+        new Activity({ID:2, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q2 olarak taranan dergide)", point:60}),
+        new Activity({ID:3, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q3 olarak taranan dergide)", point:60}),
       ],
       isActive: true
     });
@@ -29,7 +29,7 @@ describe("Activity Category", () => {
   it("Update", async () => {
     const Category = await ActivityCategory.findOne({Code:"A"});
     Category?.activities.push(
-      new Activity(1, "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q1 olarak taranan dergide)", 60)
+      new Activity({ID:4, description:"asd", point:60}),
     );
     await Category?.save();
   });
