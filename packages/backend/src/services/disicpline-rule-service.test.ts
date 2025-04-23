@@ -35,8 +35,11 @@ describe("Disicpline Rule Service Test", () => {
 
   it("Disicpline Rule Update", async () => {
     let staffDisciplineDTO = await GetDisciplineRule("Test 1");
+    staffDisciplineDTO!.disiciplineName = "asd";
     staffDisciplineDTO!.pointRules!.push(new AcademicStaffPointRules({"expression":"A1",positionType:StaffPosition.Professor, minPoint:0, maxPoint:45}));
-    await UpdateDisciplineRule(staffDisciplineDTO!);
+    await UpdateDisciplineRule("Test 1",staffDisciplineDTO!);
+
+    await GetDisciplineRule("Test 1");
   });
 
   it("Disicpline Rule GetAll", async () => {

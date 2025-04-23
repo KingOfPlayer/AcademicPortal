@@ -6,6 +6,7 @@
     "build": "pnpm tsc --build",
     "start": "node ./dist/main.js",
     "dev": "tsx watch ./src/main.ts",
+    "dev:pretty": "tsx watch ./src/main.ts | pino-pretty",
     "dev:test:unit": "vitest",
     "test:unit": "vitest run",
     "playground": "tsx watch ./src/playground.ts",

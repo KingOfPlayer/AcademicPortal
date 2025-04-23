@@ -6,13 +6,13 @@ export const AddDisciplineRule = async (DisciplineRule: AcademicStaffDisciplineR
     await disciplineRule.save();
 }
 
-export const UpdateDisciplineRule = async (DisciplineRule: AcademicStaffDisciplineRulesDTO) => {
-    let disciplineRule = await AcademicStaffDisciplineRules.findOne({ disiciplineName: DisciplineRule.disiciplineName });
+export const UpdateDisciplineRule = async (DisciplineRuleName: string,DisciplineRule: AcademicStaffDisciplineRulesDTO) => {
+    let disciplineRule = await AcademicStaffDisciplineRules.findOne({ disiciplineName: DisciplineRuleName });
 
     if(disciplineRule == null) throw new Error("When Discipline rules update, disciplineRules not found");
 
-    disciplineRule.$set(DisciplineRule);
-    await disciplineRule.save();
+    disciplineRule!.$set(DisciplineRule);
+    await disciplineRule!.save();
 }
 
 export const GetDisciplineRule = async (DisciplineName:String): Promise<AcademicStaffDisciplineRulesDTO|null> => {
