@@ -11,12 +11,12 @@ describe("Point Service Test", () => {
   it("PointTable Create", async () => {
     const newPointTable: PointTableDTO = {};
     newPointTable.pointMultipliers = [
-      new PointMultiplier("1", "1"),
-      new PointMultiplier("2", "0.8"),
-      new PointMultiplier("3", "0.6"),
-      new PointMultiplier("4", "0.5"),
-      new PointMultiplier("5-9", "1/people"),
-      new PointMultiplier("10", "1"),
+      new PointMultiplier({peopleCountCondition:"1", multiplier:"1"}),
+      new PointMultiplier({peopleCountCondition:"2", multiplier:"0.8"}),
+      new PointMultiplier({peopleCountCondition:"3", multiplier:"0.6"}),
+      new PointMultiplier({peopleCountCondition:"4", multiplier:"0.5"}),
+      new PointMultiplier({peopleCountCondition:"5-9", multiplier:"1/people"}),
+      new PointMultiplier({peopleCountCondition:"+10", multiplier:"0.1"}),
     ];
     await UpdatePointTable(newPointTable);
   });

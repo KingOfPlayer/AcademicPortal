@@ -1,5 +1,5 @@
 import { evaluate } from "mathjs";
-import { Schema, SchemaDefinition } from "mongoose";
+import { Model, model, Schema, SchemaDefinition } from "mongoose";
 
 type PeopleCountRange = string & { __brand: typeof _validateRange };
 
@@ -38,15 +38,19 @@ export interface IPointMultiplier {
   multiplier: string;
 }
 
+interface IPointTableMethods {
+  MatchRange(PeopleCount: number): boolean;
+  EvaluateMultiplier(PeopleCount: number): number;
+}
+
+type PointMultiplierModel = Model<IPointMultiplier, {}, IPointTableMethods>;
+
 const PointMultiplierSchemaOptions: SchemaDefinition = {
   peopleCountCondition: { type: String, required: true },
   multiplier: { type: String, required: true },
 };
 
-interface IPointTableMethods {
-  MatchRange(PeopleCount: number): boolean;
-  EvaluateMultiplier(PeopleCount: number): number;
-}
+
 
 export const PointMultiplierSchema = new Schema<
   IPointMultiplier,
@@ -84,19 +88,4 @@ const _EvaluateMultiplier = function (
 PointMultiplierSchema.method("MatchRange", _MatchRange);
 PointMultiplierSchema.method("EvaluateMultiplier", _EvaluateMultiplier);
 
-export class PointMultiplier implements IPointMultiplier, IPointTableMethods {
-  peopleCountCondition: PeopleCountRange;
-  multiplier: string;
-
-  constructor(peopleCountCondition: string, multiplier: string) {
-    this.peopleCountCondition = peopleCountCondition as PeopleCountRange;
-    this.multiplier = multiplier;
-  }
-  EvaluateMultiplier(PeopleCount: number): number {
-    return _EvaluateMultiplier.call(this, PeopleCount);
-  }
-
-  MatchRange(PeopleCount: number): boolean {
-    return _MatchRange.call(this, PeopleCount);
-  }
-}
+export const PointMultiplier = model<IPointMultiplier,PointMultiplierModel>("point_multiplier",PointMultiplierSchema);

@@ -40,6 +40,8 @@ function ValidateRange(this: IDisciplineActivityRule, v: number) {
   if (v <= 0) throw new Error("Range not be able to zero or below");
 }
 
+const 
+
 export const DisciplineActivityRulechemaOptions: SchemaDefinition<IDisciplineActivityRule> =
   {
     expression: {
