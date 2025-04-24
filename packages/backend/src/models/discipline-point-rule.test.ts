@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { DisciplineStaffPointRule } from "./discipline-point-rule";
+import { DisciplinePointRule } from "./discipline-point-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 
 describe("Academic Staff Point Rule", () => {
   it("Constructor Test", async () => {
-    const rule = new DisciplineStaffPointRule({
+    const rule = new DisciplinePointRule({
       expression: "A1-A4",
       positionType: DisciplinePosition.Professor,
       minPoint: 1,

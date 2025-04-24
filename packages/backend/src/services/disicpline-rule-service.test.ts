@@ -3,7 +3,7 @@ import { describe, it, expect, afterAll } from "vitest";
 import { DisciplineRule } from "../models/discipline-rule";
 import { DisciplineActivityRule } from "../models/discipline-activity-rule";
 import { DisciplinePosition } from "../models/disicpline-utils";
-import { DisciplineStaffPointRule } from "../models/discipline-point-rule";
+import { DisciplinePointRule } from "../models/discipline-point-rule";
 import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 import {
   AddDisciplineRule,
@@ -28,7 +28,7 @@ describe("Disicpline Rule Service Test", () => {
         }),
       ],
       pointRules: [
-        new DisciplineStaffPointRule({
+        new DisciplinePointRule({
           expression: "A1-A4",
           positionType: DisciplinePosition.Lecturer,
           minPoint: 0,
@@ -43,7 +43,7 @@ describe("Disicpline Rule Service Test", () => {
     const staffDisciplineDTO = await GetDisciplineRule("Test 1");
     staffDisciplineDTO!.disiciplineName = "asd";
     staffDisciplineDTO!.pointRules!.push(
-      new DisciplineStaffPointRule({
+      new DisciplinePointRule({
         expression: "A1",
         positionType: DisciplinePosition.Professor,
         minPoint: 0,
@@ -66,7 +66,7 @@ describe("Disicpline Rule Service Test", () => {
         }),
       ],
       pointRules: [
-        new DisciplineStaffPointRule({
+        new DisciplinePointRule({
           expression: "A1-A4",
           positionType: DisciplinePosition.Lecturer,
           minPoint: 0,

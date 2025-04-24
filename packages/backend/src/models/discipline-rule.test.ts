@@ -1,7 +1,7 @@
 import { describe, it, expect, afterAll } from "vitest";
 import { DisciplineRule } from "./discipline-rule";
 import { DisciplineActivityRule } from "./discipline-activity-rule";
-import { DisciplineStaffPointRule } from "./discipline-point-rule";
+import { DisciplinePointRule } from "./discipline-point-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 
 describe("Academic Staff Discipline Rule Model", () => {
@@ -20,7 +20,7 @@ describe("Academic Staff Discipline Rule Model", () => {
       }),
     ];
     staffDiscipline.pointRules = [
-      new DisciplineStaffPointRule({
+      new DisciplinePointRule({
         expression: "A1-A4",
         positionType: DisciplinePosition.Lecturer,
         minPoint: 0,

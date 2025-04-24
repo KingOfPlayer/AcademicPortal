@@ -1,7 +1,7 @@
 import { SchemaDefinition, model, Schema } from "mongoose";
 import { DisciplinePosition } from "./disicpline-utils";
 
-export interface IDisciplineStaffPointRule {
+export interface IDisciplinePointRule {
   expression: string;
   positionType: DisciplinePosition;
   minPoint: number;
@@ -37,7 +37,7 @@ const ValidateExpressionRange = (range: string) => {
   }
 };
 
-function ValidateRange(this: IDisciplineStaffPointRule, v: number) {
+function ValidateRange(this: IDisciplinePointRule, v: number) {
   if (v < 0)
     // can 0
     throw new Error("Range not be able to zero or below");
@@ -45,7 +45,7 @@ function ValidateRange(this: IDisciplineStaffPointRule, v: number) {
     throw new Error("Maximum point cannot be able to under minimum point");
 }
 
-export const DisciplineStaffPointRuleSchemaOptions: SchemaDefinition<IDisciplineStaffPointRule> =
+export const DisciplinePointRuleSchemaOptions: SchemaDefinition<IDisciplinePointRule> =
   {
     expression: {
       type: String,
@@ -65,12 +65,12 @@ export const DisciplineStaffPointRuleSchemaOptions: SchemaDefinition<IDiscipline
     },
   };
 
-export const DisciplineStaffPointRuleSchema =
-  new Schema<IDisciplineStaffPointRule>(DisciplineStaffPointRuleSchemaOptions, {
+export const DisciplinePointRuleSchema =
+  new Schema<IDisciplinePointRule>(DisciplinePointRuleSchemaOptions, {
     autoCreate: false,
   });
 
-export const DisciplineStaffPointRule = model<IDisciplineStaffPointRule>(
+export const DisciplinePointRule = model<IDisciplinePointRule>(
   "academic_staff_point_rules",
-  DisciplineStaffPointRuleSchema,
+  DisciplinePointRuleSchema,
 );

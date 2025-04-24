@@ -4,14 +4,14 @@ import {
   IDisciplineActivityRule,
 } from "./discipline-activity-rule";
 import {
-  DisciplineStaffPointRuleSchema,
-  IDisciplineStaffPointRule,
+  DisciplinePointRuleSchema,
+  IDisciplinePointRule,
 } from "./discipline-point-rule";
 
 export interface IDisciplineRule {
   disiciplineName: string;
   activityRules: IDisciplineActivityRule[];
-  pointRules: IDisciplineStaffPointRule[];
+  pointRules: IDisciplinePointRule[];
 }
 
 export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> = {
@@ -21,7 +21,7 @@ export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> = {
     required: true,
   },
   pointRules: {
-    type: [DisciplineStaffPointRuleSchema],
+    type: [DisciplinePointRuleSchema],
     required: true,
   },
 };
