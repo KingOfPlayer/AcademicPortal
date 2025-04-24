@@ -1,8 +1,12 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { PointTable } from "./point-table";
 import { PointMultiplier } from "./point-multiplier";
 
 describe("Point Table Test", () => {
+  afterAll(async () => {
+    await PointTable.deleteMany();
+  });
+
   it("PointTable Create", async () => {
     const pointTable = new PointTable();
     pointTable.pointMultipliers = [

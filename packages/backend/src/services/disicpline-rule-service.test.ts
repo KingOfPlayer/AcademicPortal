@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 
 import { DisciplineRule } from "../models/discipline-rule";
 import { DisciplineActivityRule } from "../models/discipline-activity-rule";
@@ -13,6 +13,10 @@ import {
 } from "./disicpline-rule-service";
 
 describe("Disicpline Rule Service Test", () => {
+  afterAll(async () => {
+    DisciplineRule.deleteMany();
+  });
+
   it("Disicpline Rule Create", async () => {
     const staffDisciplineDTO = new DisciplineRule({
       disiciplineName: "Test 1",

@@ -1,10 +1,14 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { DisciplineRule } from "./discipline-rule";
 import { DisciplineActivityRule } from "./discipline-activity-rule";
 import { DisciplineStaffPointRule } from "./discipline-point-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 
 describe("Academic Staff Discipline Rule Model", () => {
+  afterAll(async () => {
+    await DisciplineRule.deleteMany();
+  });
+
   it("Create", async () => {
     const staffDiscipline = new DisciplineRule();
     staffDiscipline.disiciplineName = "Sağlık Bilimleri";

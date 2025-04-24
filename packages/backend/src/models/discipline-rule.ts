@@ -1,6 +1,6 @@
 import { model, Schema, SchemaDefinition } from "mongoose";
 import {
-  DisciplineActivityRulechema,
+  DisciplineActivityRuleSchema,
   IDisciplineActivityRule,
 } from "./discipline-activity-rule";
 import {
@@ -17,7 +17,7 @@ export interface IDisciplineRule {
 export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> = {
   disiciplineName: { type: String, required: true, unique: true },
   activityRules: {
-    type: [DisciplineActivityRulechema],
+    type: [DisciplineActivityRuleSchema],
     required: true,
   },
   pointRules: {

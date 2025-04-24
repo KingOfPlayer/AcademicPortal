@@ -1,8 +1,12 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { Activity } from "./activity";
 import { ActivityCategory } from "./activity-category";
 
 describe("Activity Category", () => {
+  afterAll(async () => {
+    await ActivityCategory.deleteMany({});
+  });
+
   it("Create", async () => {
     const Category = new ActivityCategory({
       Code: "A",

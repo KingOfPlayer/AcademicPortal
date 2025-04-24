@@ -51,12 +51,12 @@ export const DisciplineActivityRulechemaOptions: SchemaDefinition<IDisciplineAct
     minimumCount: { type: Number, required: true, validate: ValidateRange },
   };
 
-export const DisciplineActivityRulechema = new Schema<IDisciplineActivityRule>(
+export const DisciplineActivityRuleSchema = new Schema<IDisciplineActivityRule>(
   DisciplineActivityRulechemaOptions,
   { autoCreate: false },
 );
 
 export const DisciplineActivityRule = model<IDisciplineActivityRule>(
   "academic_staff_activity_rules",
-  DisciplineActivityRulechema,
+  DisciplineActivityRuleSchema,
 );

@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import {
   GetPointMultiplier,
   GetPointTable,
@@ -8,6 +8,11 @@ import { PointTableDTO } from "../models/dtos/point-table-dto";
 import { PointMultiplier } from "../models/point-multiplier";
 
 describe("Point Service Test", () => {
+  
+  afterAll(async () => {
+    PointMultiplier.deleteMany();
+  });
+
   it("PointTable Create", async () => {
     const newPointTable: PointTableDTO = {};
     newPointTable.pointMultipliers = [

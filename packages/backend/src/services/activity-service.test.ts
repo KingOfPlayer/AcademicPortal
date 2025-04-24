@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { ActivityCategory } from "../models/activity-category";
 import { Activity } from "../models/activity";
 import { ActivityCategoryDTO } from "../models/dtos/activity-category-dto";
@@ -12,6 +12,10 @@ import {
 } from "./activity-service";
 
 describe("ActivityCategory Service Test", () => {
+  afterAll(async () => {
+    ActivityCategory.deleteMany();
+  });
+  
   it("AddActivityCategory", async () => {
     const Category = new ActivityCategory({
       Code: "A",

@@ -1,9 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterAll } from "vitest";
 import { AddUser, GetUser, UpdateUser, UpdateUserRole } from "./user-service";
-import { UserRoles } from "../models/user";
+import { User, UserRoles } from "../models/user";
 import { UserDTO } from "../models/dtos/user-dto";
 
 describe("User Service Test", () => {
+  afterAll(async () => {
+    User.deleteMany();
+  });
+
   it("User Create", async () => {
     const userDto = {} as UserDTO;
     userDto.id_number = 12345678912;
