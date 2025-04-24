@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 
-import { AcademicStaffDisciplineRules } from "../models/academic-staff-discipline-rules";
-import { AcademicStaffActivityRules } from "../models/academic-staff-activity-rules";
-import { StaffPosition } from "../models/academic-staff-disicpline-utils";
-import { AcademicStaffPointRules } from "../models/academic-staff-point-rules";
-import { AcademicStaffDisciplineRulesDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
+import { DisciplineRule } from "../models/discipline-rules";
+import { DisciplineActivityRule } from "../models/discipline-activity-rules";
+import { DisciplinePosition } from "../models/disicpline-utils";
+import { DisciplineStaffPointRule } from "../models/discipline-point-rules";
+import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 import {
   AddDisciplineRule,
   GetAllDisciplineRules,
@@ -14,24 +14,24 @@ import {
 
 describe("Disicpline Rule Service Test", () => {
   it("Disicpline Rule Create", async () => {
-    const staffDisciplineDTO = new AcademicStaffDisciplineRules({
+    const staffDisciplineDTO = new DisciplineRule({
       disiciplineName: "Test 1",
       activityRules: [
-        new AcademicStaffActivityRules({
+        new DisciplineActivityRule({
           expression: "A1-A2",
-          positionType: StaffPosition.AssociateProfessor,
+          positionType: DisciplinePosition.AssociateProfessor,
           minimumCount: 200,
         }),
       ],
       pointRules: [
-        new AcademicStaffPointRules({
+        new DisciplineStaffPointRule({
           expression: "A1-A4",
-          positionType: StaffPosition.Lecturer,
+          positionType: DisciplinePosition.Lecturer,
           minPoint: 0,
           maxPoint: 0,
         }),
       ],
-    }) as AcademicStaffDisciplineRulesDTO;
+    }) as DisciplineRuleDTO;
     await AddDisciplineRule(staffDisciplineDTO);
   });
 
@@ -39,9 +39,9 @@ describe("Disicpline Rule Service Test", () => {
     const staffDisciplineDTO = await GetDisciplineRule("Test 1");
     staffDisciplineDTO!.disiciplineName = "asd";
     staffDisciplineDTO!.pointRules!.push(
-      new AcademicStaffPointRules({
+      new DisciplineStaffPointRule({
         expression: "A1",
-        positionType: StaffPosition.Professor,
+        positionType: DisciplinePosition.Professor,
         minPoint: 0,
         maxPoint: 45,
       }),
@@ -52,24 +52,24 @@ describe("Disicpline Rule Service Test", () => {
   });
 
   it("Disicpline Rule GetAll", async () => {
-    const staffDisciplineDTO = new AcademicStaffDisciplineRules({
+    const staffDisciplineDTO = new DisciplineRule({
       disiciplineName: "Test 2",
       activityRules: [
-        new AcademicStaffActivityRules({
+        new DisciplineActivityRule({
           expression: "A1-A2",
-          positionType: StaffPosition.AssociateProfessor,
+          positionType: DisciplinePosition.AssociateProfessor,
           minimumCount: 200,
         }),
       ],
       pointRules: [
-        new AcademicStaffPointRules({
+        new DisciplineStaffPointRule({
           expression: "A1-A4",
-          positionType: StaffPosition.Lecturer,
+          positionType: DisciplinePosition.Lecturer,
           minPoint: 0,
           maxPoint: 0,
         }),
       ],
-    }) as AcademicStaffDisciplineRulesDTO;
+    }) as DisciplineRuleDTO;
     await AddDisciplineRule(staffDisciplineDTO);
 
     const staffDisciplineDTOs = await GetAllDisciplineRules();

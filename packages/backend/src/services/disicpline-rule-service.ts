@@ -1,18 +1,18 @@
-import { AcademicStaffDisciplineRules } from "../models/academic-staff-discipline-rules";
-import { AcademicStaffDisciplineRulesDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
+import { DisciplineRule } from "../models/discipline-rules";
+import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 
 export const AddDisciplineRule = async (
-  DisciplineRule: AcademicStaffDisciplineRulesDTO,
+  DisciplineRule: DisciplineRuleDTO,
 ) => {
-  const disciplineRule = new AcademicStaffDisciplineRules(DisciplineRule);
+  const disciplineRule = new DisciplineRule(DisciplineRule);
   await disciplineRule.save();
 };
 
 export const UpdateDisciplineRule = async (
   DisciplineRuleName: string,
-  DisciplineRule: AcademicStaffDisciplineRulesDTO,
+  DisciplineRule: DisciplineRuleDTO,
 ) => {
-  const disciplineRule = await AcademicStaffDisciplineRules.findOne({
+  const disciplineRule = await DisciplineRule.findOne({
     disiciplineName: DisciplineRuleName,
   });
 
@@ -25,14 +25,14 @@ export const UpdateDisciplineRule = async (
 
 export const GetDisciplineRule = async (
   DisciplineName: string,
-): Promise<AcademicStaffDisciplineRulesDTO | null> => {
-  return await AcademicStaffDisciplineRules.findOne({
+): Promise<DisciplineRuleDTO | null> => {
+  return await DisciplineRule.findOne({
     disiciplineName: DisciplineName,
   });
 };
 
 export const GetAllDisciplineRules = async (): Promise<
-  AcademicStaffDisciplineRulesDTO[]
+  DisciplineRuleDTO[]
 > => {
-  return await AcademicStaffDisciplineRules.find({});
+  return await DisciplineRule.find({});
 };

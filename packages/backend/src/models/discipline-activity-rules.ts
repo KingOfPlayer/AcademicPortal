@@ -1,9 +1,9 @@
 import { model, Schema, SchemaDefinition } from "mongoose";
-import { StaffPosition } from "./academic-staff-disicpline-utils";
+import { DisciplinePosition } from "./disicpline-utils";
 
-export interface IAcademicStaffActivityRules {
+export interface IDisciplineActivityRule {
   expression: string;
-  positionType: StaffPosition;
+  positionType: DisciplinePosition;
   minimumCount: number;
 }
 
@@ -36,28 +36,28 @@ const ValidateExpressionRange = (range: string) => {
   }
 };
 
-function ValidateRange(this: IAcademicStaffActivityRules, v: number) {
+function ValidateRange(this: IDisciplineActivityRule, v: number) {
   if (v <= 0) throw new Error("Range not be able to zero or below");
 }
 
-export const AcademicStaffActivityRulesSchemaOptions: SchemaDefinition<IAcademicStaffActivityRules> =
+export const DisciplineActivityRulechemaOptions: SchemaDefinition<IDisciplineActivityRule> =
   {
     expression: {
       type: String,
       required: true,
       validate: ValidateExpressionRange,
     },
-    positionType: { type: String, enum: StaffPosition, required: true },
+    positionType: { type: String, enum: DisciplinePosition, required: true },
     minimumCount: { type: Number, required: true, validate: ValidateRange },
   };
 
-export const AcademicStaffActivityRulesSchema =
-  new Schema<IAcademicStaffActivityRules>(
-    AcademicStaffActivityRulesSchemaOptions,
+export const DisciplineActivityRulechema =
+  new Schema<IDisciplineActivityRule>(
+    DisciplineActivityRulechemaOptions,
     { autoCreate: false },
   );
 
-export const AcademicStaffActivityRules = model<IAcademicStaffActivityRules>(
+export const DisciplineActivityRule = model<IDisciplineActivityRule>(
   "academic_staff_activity_rules",
-  AcademicStaffActivityRulesSchema,
+  DisciplineActivityRulechema,
 );

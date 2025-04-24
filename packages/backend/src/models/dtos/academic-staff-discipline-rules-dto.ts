@@ -1,4 +1,4 @@
-import { IAcademicStaffDisciplineRules } from "../academic-staff-discipline-rules";
+import { IDisciplineRule } from "../discipline-rules";
 
-export type AcademicStaffDisciplineRulesDTO =
-  Partial<IAcademicStaffDisciplineRules>;
+export type DisciplineRuleDTO =
+  Partial<IDisciplineRule>;

@@ -1,9 +1,9 @@
 import { SchemaDefinition, model, Schema } from "mongoose";
-import { StaffPosition } from "./academic-staff-disicpline-utils";
+import { DisciplinePosition } from "./disicpline-utils";
 
-export interface IAcademicStaffPointRules {
+export interface IDisciplineStaffPointRule {
   expression: string;
-  positionType: StaffPosition;
+  positionType: DisciplinePosition;
   minPoint: number;
   maxPoint: number;
 }
@@ -37,7 +37,7 @@ const ValidateExpressionRange = (range: string) => {
   }
 };
 
-function ValidateRange(this: IAcademicStaffPointRules, v: number) {
+function ValidateRange(this: IDisciplineStaffPointRule, v: number) {
   if (v < 0)
     // can 0
     throw new Error("Range not be able to zero or below");
@@ -45,14 +45,14 @@ function ValidateRange(this: IAcademicStaffPointRules, v: number) {
     throw new Error("Maximum point cannot be able to under minimum point");
 }
 
-export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicStaffPointRules> =
+export const DisciplineStaffPointRuleSchemaOptions: SchemaDefinition<IDisciplineStaffPointRule> =
   {
     expression: {
       type: String,
       required: true,
       validate: ValidateExpressionRange,
     },
-    positionType: { type: String, enum: StaffPosition, required: true },
+    positionType: { type: String, enum: DisciplinePosition, required: true },
     minPoint: {
       type: Number,
       required: true,
@@ -65,12 +65,12 @@ export const AcademicStaffPointRulesSchemaOptions: SchemaDefinition<IAcademicSta
     },
   };
 
-export const AcademicStaffPointRulesSchema =
-  new Schema<IAcademicStaffPointRules>(AcademicStaffPointRulesSchemaOptions, {
+export const DisciplineStaffPointRuleSchema =
+  new Schema<IDisciplineStaffPointRule>(DisciplineStaffPointRuleSchemaOptions, {
     autoCreate: false,
   });
 
-export const AcademicStaffPointRules = model<IAcademicStaffPointRules>(
+export const DisciplineStaffPointRule = model<IDisciplineStaffPointRule>(
   "academic_staff_point_rules",
-  AcademicStaffPointRulesSchema,
+  DisciplineStaffPointRuleSchema,
 );

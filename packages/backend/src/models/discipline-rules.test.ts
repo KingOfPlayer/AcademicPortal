@@ -1,24 +1,24 @@
 import { describe, it, expect } from "vitest";
-import { AcademicStaffDisciplineRules } from "./academic-staff-discipline-rules";
-import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
-import { AcademicStaffPointRules } from "./academic-staff-point-rules";
-import { StaffPosition } from "./academic-staff-disicpline-utils";
+import { DisciplineRule } from "./discipline-rules";
+import { DisciplineActivityRule } from "./discipline-activity-rules";
+import { DisciplineStaffPointRule } from "./discipline-point-rules";
+import { DisciplinePosition } from "./disicpline-utils";
 
 describe("Academic Staff Discipline Rule Model", () => {
   it("Create", async () => {
-    const staffDiscipline = new AcademicStaffDisciplineRules();
+    const staffDiscipline = new DisciplineRule();
     staffDiscipline.disiciplineName = "Sağlık Bilimleri";
     staffDiscipline.activityRules = [
-      new AcademicStaffActivityRules({
+      new DisciplineActivityRule({
         expression: "A1-A2",
-        positionType: StaffPosition.AssociateProfessor,
+        positionType: DisciplinePosition.AssociateProfessor,
         minimumCount: 200,
       }),
     ];
     staffDiscipline.pointRules = [
-      new AcademicStaffPointRules({
+      new DisciplineStaffPointRule({
         expression: "A1-A4",
-        positionType: StaffPosition.Lecturer,
+        positionType: DisciplinePosition.Lecturer,
         minPoint: 0,
         maxPoint: 0,
       }),
@@ -28,7 +28,7 @@ describe("Academic Staff Discipline Rule Model", () => {
   });
 
   it("Find", async () => {
-    const staffDiscipline = await AcademicStaffDisciplineRules.findOne({
+    const staffDiscipline = await DisciplineRule.findOne({
       disiciplineName: "Sağlık Bilimleri",
     });
 
@@ -36,20 +36,20 @@ describe("Academic Staff Discipline Rule Model", () => {
   });
 
   it("Update", async () => {
-    let staffDiscipline = await AcademicStaffDisciplineRules.findOne({
+    let staffDiscipline = await DisciplineRule.findOne({
       disiciplineName: "Sağlık Bilimleri",
     });
 
     staffDiscipline?.activityRules.push(
-      new AcademicStaffActivityRules({
+      new DisciplineActivityRule({
         expression: "A1-A2",
-        positionType: StaffPosition.Lecturer,
+        positionType: DisciplinePosition.Lecturer,
         minimumCount: 200,
       }),
     );
     await staffDiscipline?.save();
 
-    staffDiscipline = await AcademicStaffDisciplineRules.findOne({
+    staffDiscipline = await DisciplineRule.findOne({
       disiciplineName: "Sağlık Bilimleri",
     });
 

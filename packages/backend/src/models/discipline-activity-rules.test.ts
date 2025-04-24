@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { AcademicStaffActivityRules } from "./academic-staff-activity-rules";
-import { StaffPosition } from "./academic-staff-disicpline-utils";
+import { DisciplineActivityRule } from "./discipline-activity-rules";
+import { DisciplinePosition } from "./disicpline-utils";
 
-describe("Academic Staff Activity Rule", () => {
+describe("Discipline Activity Rule", () => {
   it("Constructor Test", async () => {
-    const rule = new AcademicStaffActivityRules({
+    const rule = new DisciplineActivityRule({
       expression: "A1-A2",
-      positionType: StaffPosition.AssociateProfessor,
+      positionType: DisciplinePosition.AssociateProfessor,
       minimumCount: 200,
     });
 

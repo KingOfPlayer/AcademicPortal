@@ -6,7 +6,7 @@ import {
   UpdateDisciplineRule,
 } from "../../../services/disicpline-rule-service";
 import { UserRoles } from "../../../models/user";
-import { AcademicStaffDisciplineRulesDTO } from "../../../models/dtos/academic-staff-discipline-rules-dto";
+import { DisciplineRuleDTO } from "../../../models/dtos/academic-staff-discipline-rules-dto";
 
 export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
   //Return user info
@@ -23,7 +23,7 @@ export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
     },
   );
 
-  fastify.put<{ Body: AcademicStaffDisciplineRulesDTO }>(
+  fastify.put<{ Body: DisciplineRuleDTO }>(
     "/",
     { preHandler: [fastify.authentication([UserRoles.Admin])] },
     async (request, reply) => {
