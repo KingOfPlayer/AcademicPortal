@@ -1,4 +1,3 @@
-import { Activity } from "../models/activity";
 import { ActivityCategory } from "../models/activity-category";
 import { ActivityCategoryDTO } from "../models/dtos/activity-category-dto";
 import { ActivityDTO } from "../models/dtos/activity-dto";
@@ -16,7 +15,10 @@ export async function GetAllActivityCategory(): Promise<ActivityCategoryDTO[]> {
   return activityCategories;
 }
 
-export async function GetActivity(Code: string, ID: number): Promise<ActivityDTO> {
+export async function GetActivity(
+  Code: string,
+  ID: number,
+): Promise<ActivityDTO> {
   const activityCategory = await ActivityCategory.findOne({ Code: Code });
   const activity = activityCategory?.activities.find((activity) => {
     return activity.ID == ID;

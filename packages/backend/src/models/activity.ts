@@ -14,4 +14,4 @@ const ActivitySchemaOptions: SchemaDefinition = {
 
 export const ActivitySchema = new Schema<IActivity>(ActivitySchemaOptions);
 
-export const Activity = model<IActivity>("Activity",ActivitySchema);
+export const Activity = model<IActivity>("Activity", ActivitySchema);

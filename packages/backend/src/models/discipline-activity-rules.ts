@@ -40,8 +40,6 @@ function ValidateRange(this: IDisciplineActivityRule, v: number) {
   if (v <= 0) throw new Error("Range not be able to zero or below");
 }
 
-const 
-
 export const DisciplineActivityRulechemaOptions: SchemaDefinition<IDisciplineActivityRule> =
   {
     expression: {
@@ -53,11 +51,10 @@ export const DisciplineActivityRulechemaOptions: SchemaDefinition<IDisciplineAct
     minimumCount: { type: Number, required: true, validate: ValidateRange },
   };
 
-export const DisciplineActivityRulechema =
-  new Schema<IDisciplineActivityRule>(
-    DisciplineActivityRulechemaOptions,
-    { autoCreate: false },
-  );
+export const DisciplineActivityRulechema = new Schema<IDisciplineActivityRule>(
+  DisciplineActivityRulechemaOptions,
+  { autoCreate: false },
+);
 
 export const DisciplineActivityRule = model<IDisciplineActivityRule>(
   "academic_staff_activity_rules",

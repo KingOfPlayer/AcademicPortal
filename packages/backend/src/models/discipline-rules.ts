@@ -14,27 +14,24 @@ export interface IDisciplineRule {
   pointRules: IDisciplineStaffPointRule[];
 }
 
-export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> =
-  {
-    disiciplineName: { type: String, required: true, unique: true },
-    activityRules: {
-      type: [DisciplineActivityRulechema],
-      required: true,
-    },
-    pointRules: {
-      type: [DisciplineStaffPointRuleSchema],
-      required: true,
-    },
-  };
+export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> = {
+  disiciplineName: { type: String, required: true, unique: true },
+  activityRules: {
+    type: [DisciplineActivityRulechema],
+    required: true,
+  },
+  pointRules: {
+    type: [DisciplineStaffPointRuleSchema],
+    required: true,
+  },
+};
 
-const DisciplineRuleSchema =
-  new Schema<IDisciplineRule>(
-    DisciplineRuleOptions,
-    { autoCreate: false },
-  );
+const DisciplineRuleSchema = new Schema<IDisciplineRule>(
+  DisciplineRuleOptions,
+  { autoCreate: false },
+);
 
-export const DisciplineRule =
-  model<IDisciplineRule>(
-    "academic_staff_discipline",
-    DisciplineRuleSchema,
-  );
+export const DisciplineRule = model<IDisciplineRule>(
+  "academic_staff_discipline",
+  DisciplineRuleSchema,
+);

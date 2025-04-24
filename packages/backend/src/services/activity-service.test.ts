@@ -2,20 +2,42 @@ import { describe, it, expect } from "vitest";
 import { ActivityCategory } from "../models/activity-category";
 import { Activity } from "../models/activity";
 import { ActivityCategoryDTO } from "../models/dtos/activity-category-dto";
-import { AddActivityCategory, DeleteActivityCategory, GetActivity, GetActivityCategory, GetAllActivityCategory, UpdateActivityCategory } from "./activity-service";
+import {
+  AddActivityCategory,
+  DeleteActivityCategory,
+  GetActivity,
+  GetActivityCategory,
+  GetAllActivityCategory,
+  UpdateActivityCategory,
+} from "./activity-service";
 
 describe("ActivityCategory Service Test", () => {
   it("AddActivityCategory", async () => {
     const Category = new ActivityCategory({
-          Code: "A",
-          sectionName: "Makaleler",
-          activities: [
-            new Activity({ID:1, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q1 olarak taranan dergide)", point:60}),
-            new Activity({ID:2, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q2 olarak taranan dergide)", point:60}),
-            new Activity({ID:3, description:"SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q3 olarak taranan dergide)", point:60}),
-          ],
-          isActive: true
-        }) as ActivityCategoryDTO;
+      Code: "A",
+      sectionName: "Makaleler",
+      activities: [
+        new Activity({
+          ID: 1,
+          description:
+            "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q1 olarak taranan dergide)",
+          point: 60,
+        }),
+        new Activity({
+          ID: 2,
+          description:
+            "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q2 olarak taranan dergide)",
+          point: 60,
+        }),
+        new Activity({
+          ID: 3,
+          description:
+            "SCI-E, SSCI veya AHCI kapsamındaki dergilerde yayımlanmış makale (Q3 olarak taranan dergide)",
+          point: 60,
+        }),
+      ],
+      isActive: true,
+    }) as ActivityCategoryDTO;
 
     await AddActivityCategory(Category);
   });
@@ -26,7 +48,7 @@ describe("ActivityCategory Service Test", () => {
   });
 
   it("GetActivity", async () => {
-    const Category = await GetActivity("A",1);
+    const Category = await GetActivity("A", 1);
     expect(Category.point).toBe(60);
   });
 

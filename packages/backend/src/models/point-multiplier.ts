@@ -43,14 +43,12 @@ interface IPointTableMethods {
   EvaluateMultiplier(PeopleCount: number): number;
 }
 
-type PointMultiplierModel = Model<IPointMultiplier, {}, IPointTableMethods>;
+type PointMultiplierModel = Model<IPointMultiplier, "", IPointTableMethods>;
 
 const PointMultiplierSchemaOptions: SchemaDefinition = {
   peopleCountCondition: { type: String, required: true },
   multiplier: { type: String, required: true },
 };
-
-
 
 export const PointMultiplierSchema = new Schema<
   IPointMultiplier,
@@ -88,4 +86,7 @@ const _EvaluateMultiplier = function (
 PointMultiplierSchema.method("MatchRange", _MatchRange);
 PointMultiplierSchema.method("EvaluateMultiplier", _EvaluateMultiplier);
 
-export const PointMultiplier = model<IPointMultiplier,PointMultiplierModel>("point_multiplier",PointMultiplierSchema);
+export const PointMultiplier = model<IPointMultiplier, PointMultiplierModel>(
+  "point_multiplier",
+  PointMultiplierSchema,
+);

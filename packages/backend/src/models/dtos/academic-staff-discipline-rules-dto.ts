@@ -1,4 +1,3 @@
 import { IDisciplineRule } from "../discipline-rules";
 
-export type DisciplineRuleDTO =
-  Partial<IDisciplineRule>;
+export type DisciplineRuleDTO = Partial<IDisciplineRule>;

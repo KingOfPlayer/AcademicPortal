@@ -3,13 +3,19 @@ import { PointMultiplier } from "./point-multiplier";
 
 describe("PointMultiplier Test", () => {
   it("Type 1", async () => {
-    const pointMultiplier = new PointMultiplier({peopleCountCondition:"2", multiplier:"1"});
+    const pointMultiplier = new PointMultiplier({
+      peopleCountCondition: "2",
+      multiplier: "1",
+    });
     expect(pointMultiplier.MatchRange(2)).toBe(true);
     expect(pointMultiplier.MatchRange(3)).toBe(false);
   });
 
   it("Type 2", async () => {
-    const pointMultiplier = new PointMultiplier({peopleCountCondition:"2-5", multiplier:"1/people"});
+    const pointMultiplier = new PointMultiplier({
+      peopleCountCondition: "2-5",
+      multiplier: "1/people",
+    });
 
     expect(pointMultiplier.MatchRange(1)).toBe(false);
     expect(pointMultiplier.MatchRange(2)).toBe(true);
@@ -21,7 +27,10 @@ describe("PointMultiplier Test", () => {
   });
 
   it("Type 3", async () => {
-    const pointMultiplier = new PointMultiplier({peopleCountCondition:"+5", multiplier:"1/people"});
+    const pointMultiplier = new PointMultiplier({
+      peopleCountCondition: "+5",
+      multiplier: "1/people",
+    });
 
     expect(pointMultiplier.MatchRange(4)).toBe(false);
     expect(pointMultiplier.MatchRange(5)).toBe(true);

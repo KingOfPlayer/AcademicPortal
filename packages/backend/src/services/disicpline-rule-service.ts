@@ -1,9 +1,7 @@
 import { DisciplineRule } from "../models/discipline-rules";
 import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 
-export const AddDisciplineRule = async (
-  disciplineRule: DisciplineRuleDTO,
-) => {
+export const AddDisciplineRule = async (disciplineRule: DisciplineRuleDTO) => {
   const rule = new DisciplineRule(disciplineRule);
   await rule.save();
 };
@@ -31,8 +29,6 @@ export const GetDisciplineRule = async (
   });
 };
 
-export const GetAllDisciplineRules = async (): Promise<
-  DisciplineRuleDTO[]
-> => {
+export const GetAllDisciplineRules = async (): Promise<DisciplineRuleDTO[]> => {
   return await DisciplineRule.find();
 };
