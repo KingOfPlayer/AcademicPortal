@@ -26,7 +26,7 @@ export const DisciplineRuleOptions: SchemaDefinition<IDisciplineRule> = {
   },
 };
 
-const DisciplineRuleSchema = new Schema<IDisciplineRule>(
+export const DisciplineRuleSchema = new Schema<IDisciplineRule>(
   DisciplineRuleOptions,
   { autoCreate: false },
 );
