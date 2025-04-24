@@ -1,14 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { DisciplineStaffPointRule } from "./discipline-point-rules";
+import { DisciplineActivityRule } from "./discipline-activity-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 
-describe("Academic Staff Point Rule", () => {
+describe("Discipline Activity Rule", () => {
   it("Constructor Test", async () => {
-    const rule = new DisciplineStaffPointRule({
-      expression: "A1-A4",
-      positionType: DisciplinePosition.Professor,
-      minPoint: 1,
-      maxPoint: 45,
+    const rule = new DisciplineActivityRule({
+      expression: "A1-A2",
+      positionType: DisciplinePosition.AssociateProfessor,
+      minimumCount: 200,
     });
 
     await expect(rule.validate()).resolves.not.toThrow();
@@ -24,16 +23,7 @@ describe("Academic Staff Point Rule", () => {
 
     rule.expression = "A1-A4";
 
-    rule.minPoint = 0;
-    rule.maxPoint = 45;
-    await expect(rule.validate()).resolves.not.toThrow();
-
-    rule.minPoint = 0;
-    rule.maxPoint = 0;
-    await expect(rule.validate()).resolves.not.toThrow();
-
-    rule.minPoint = 45;
-    rule.maxPoint = 0;
+    rule.minimumCount = 0;
     await expect(rule.validate()).rejects.toThrow();
   });
 });

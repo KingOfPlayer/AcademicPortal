@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 
-import { DisciplineRule } from "../models/discipline-rules";
-import { DisciplineActivityRule } from "../models/discipline-activity-rules";
+import { DisciplineRule } from "../models/discipline-rule";
+import { DisciplineActivityRule } from "../models/discipline-activity-rule";
 import { DisciplinePosition } from "../models/disicpline-utils";
-import { DisciplineStaffPointRule } from "../models/discipline-point-rules";
+import { DisciplineStaffPointRule } from "../models/discipline-point-rule";
 import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 import {
   AddDisciplineRule,

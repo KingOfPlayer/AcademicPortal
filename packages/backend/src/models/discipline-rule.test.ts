@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { DisciplineRule } from "./discipline-rules";
-import { DisciplineActivityRule } from "./discipline-activity-rules";
-import { DisciplineStaffPointRule } from "./discipline-point-rules";
+import { DisciplineRule } from "./discipline-rule";
+import { DisciplineActivityRule } from "./discipline-activity-rule";
+import { DisciplineStaffPointRule } from "./discipline-point-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 
 describe("Academic Staff Discipline Rule Model", () => {

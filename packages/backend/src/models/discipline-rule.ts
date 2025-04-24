@@ -2,11 +2,11 @@ import { model, Schema, SchemaDefinition } from "mongoose";
 import {
   DisciplineActivityRulechema,
   IDisciplineActivityRule,
-} from "./discipline-activity-rules";
+} from "./discipline-activity-rule";
 import {
   DisciplineStaffPointRuleSchema,
   IDisciplineStaffPointRule,
-} from "./discipline-point-rules";
+} from "./discipline-point-rule";
 
 export interface IDisciplineRule {
   disiciplineName: string;

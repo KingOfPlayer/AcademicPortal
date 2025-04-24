@@ -1,4 +1,4 @@
-import { DisciplineRule } from "../models/discipline-rules";
+import { DisciplineRule } from "../models/discipline-rule";
 import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 
 export const AddDisciplineRule = async (disciplineRule: DisciplineRuleDTO) => {
