@@ -2,37 +2,37 @@ import { DisciplineRule } from "../models/discipline-rules";
 import { DisciplineRuleDTO } from "../models/dtos/academic-staff-discipline-rules-dto";
 
 export const AddDisciplineRule = async (
-  DisciplineRule: DisciplineRuleDTO,
+  disciplineRule: DisciplineRuleDTO,
 ) => {
-  const disciplineRule = new DisciplineRule(DisciplineRule);
-  await disciplineRule.save();
+  const rule = new DisciplineRule(disciplineRule);
+  await rule.save();
 };
 
 export const UpdateDisciplineRule = async (
-  DisciplineRuleName: string,
-  DisciplineRule: DisciplineRuleDTO,
+  disciplineRuleName: string,
+  disciplineRule: DisciplineRuleDTO,
 ) => {
-  const disciplineRule = await DisciplineRule.findOne({
-    disiciplineName: DisciplineRuleName,
+  const rule = await DisciplineRule.findOne({
+    disiciplineName: disciplineRuleName,
   });
 
-  if (disciplineRule == null)
+  if (rule == null)
     throw new Error("When Discipline rules update, disciplineRules not found");
 
-  disciplineRule!.$set(DisciplineRule);
-  await disciplineRule!.save();
+  rule!.$set(disciplineRule);
+  await rule!.save();
 };
 
 export const GetDisciplineRule = async (
-  DisciplineName: string,
+  disciplineName: string,
 ): Promise<DisciplineRuleDTO | null> => {
   return await DisciplineRule.findOne({
-    disiciplineName: DisciplineName,
+    disiciplineName: disciplineName,
   });
 };
 
 export const GetAllDisciplineRules = async (): Promise<
   DisciplineRuleDTO[]
 > => {
-  return await DisciplineRule.find({});
+  return await DisciplineRule.find();
 };
