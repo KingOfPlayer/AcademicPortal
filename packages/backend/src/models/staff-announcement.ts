@@ -1,6 +1,7 @@
 import { model, Schema, SchemaDefinition } from "mongoose";
 import { DisciplineRuleSchema, IDisciplineRule } from "./discipline-rule";
 import { DisciplineActivityRuleSchema } from "./discipline-activity-rule";
+import { Appeal } from "./appeal";
 
 export interface IStaffAnnouncement {
     title: string;
@@ -25,6 +26,10 @@ const StaffAnnouncementSchemaOptions: SchemaDefinition<IStaffAnnouncement> = {
 export const StaffAnnouncementSchema = new Schema<IStaffAnnouncement>(
     StaffAnnouncementSchemaOptions
 );
+
+StaffAnnouncementSchema.pre("deleteOne", async function (next) {
+    await Appeal.deleteMany({ announcement: this.getFilter()._id });
+});
 
 export const StaffAnnouncement = model<IStaffAnnouncement>(
     "staff_announcement",

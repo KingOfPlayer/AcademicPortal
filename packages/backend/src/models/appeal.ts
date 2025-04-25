@@ -14,4 +14,13 @@ export const AppealSchemaOptions: SchemaDefinition<IAppeal> = {
 };
 
 export const AppealSchema = new Schema<IAppeal>(AppealSchemaOptions, { autoCreate: false });
+
+AppealSchema.pre("save",async function (next) {
+    await Appeal.exists({ announcement:this.announcement._id,user: this.user._id }).then((exists) => {
+        if (exists) {
+            throw new Error("Appeal already exists for this announcement and user.");
+        }
+    });
+});
+    
 export const Appeal = model<IAppeal>("appeals", AppealSchema);

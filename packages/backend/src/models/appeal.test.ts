@@ -98,13 +98,22 @@ describe("Appeal", () => {
         await appeal.save();
     });
 
+    it("Duplicate Appeal", async () => {
+        const announcement = await StaffAnnouncement.findOne({ title: "Test Title" });
+        const user = await User.findOne({ name: "Test_Name" });
+        const appeal = new Appeal({
+            announcement: announcement?._id,
+            user: user?._id,
+            appealContents: [],
+        });
+        await expect(appeal.save()).rejects.toThrow();
+    });
+
     it("Get Appeal", async () => {
         const user = await User.findOne({ name: "Test_Name" });
         const appeal = await Appeal.findOne({user: user?._id});
-        console.log( appeal);
         expect(appeal).not.toBeNull();
         expect(appeal?.announcement).not.toBeNull();
-        console.log((await appeal?.populate(["announcement","user"])));
     });
 
     it("Delete Announcement", async () => {
@@ -113,9 +122,7 @@ describe("Appeal", () => {
             await StaffAnnouncement.deleteOne({ _id: announcement._id });
         }
         const appeal = await Appeal.findOne({ announcement: announcement?._id });
-        console.log((await appeal?.populate(["announcement"])));
         expect(appeal).toBeNull();
     });
-
 });
 
