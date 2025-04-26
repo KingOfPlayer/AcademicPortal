@@ -1,14 +1,9 @@
+<script setup lang="ts">
+import DashboardPage from '../components/DashboardPage.vue';
+</script>
+
 <template>
+  <main>
     <DashboardPage />
-  </template>
-  
-  <script>
-  import DashboardPage from '@/components/dashboard/DashboardPage.vue'
-  
-  export default {
-    name: 'DashboardView',
-    components: {
-      DashboardPage
-    }
-  }
-  </script>
+  </main>
+</template>
