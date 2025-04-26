@@ -1,22 +1,13 @@
-
-import { Schema, Model, model } from 'mongoose';
+import { Schema, SchemaDefinition, model } from "mongoose";
 
 export interface IToken {
-    token?: string;
+  token?: string;
 }
 
-const TokenSchemaOptions = {
-    token: { type: String, required: true, index: { unique: true } },
+const TokenSchemaOptions: SchemaDefinition = {
+  token: { type: String, required: true, index: { unique: true } },
 };
 
-interface ITokenMethods {
+const TokenSchema = new Schema<IToken>(TokenSchemaOptions);
 
-}
-
-interface TokenModel extends Model<IToken, {}, ITokenMethods> {
-
-}
-
-const TokenSchema = new Schema<IToken, TokenModel, ITokenMethods>(TokenSchemaOptions);
-
-export const Token = model<IToken, TokenModel>('tokens', TokenSchema);
+export const Token = model<IToken>("tokens", TokenSchema);

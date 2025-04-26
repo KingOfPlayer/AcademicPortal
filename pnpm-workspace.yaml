@@ -1,4 +1,4 @@
 packages:
   - packages/*
-onlyBuiltDependencies:
-  - esbuild
+ignoredBuiltDependencies:
+  - mongodb-memory-server

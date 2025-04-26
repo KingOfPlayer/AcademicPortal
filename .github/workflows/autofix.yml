@@ -1,0 +1,36 @@
+name: autofix.ci
+
+on:
+  pull_request:
+
+jobs:
+
+  autofix:
+    runs-on: self-hosted
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Pull Repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install libraries
+        run: pnpm i
+        
+      - name: Lint
+        run: pnpm --recursive lint
+
+      - name: Format
+        run: pnpm --recursive format
+
+      - uses: autofix-ci/action@v1
