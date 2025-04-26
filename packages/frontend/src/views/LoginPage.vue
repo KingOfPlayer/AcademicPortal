@@ -7,34 +7,14 @@
       
       <h1 class="title">Sistem Girişi</h1>
       
-      <div class="login-tabs">
-        <button 
-          v-for="tab in loginTabs" 
-          :key="tab.id"
-          :class="['tab-button', { active: activeTab === tab.id }]"
-          @click="switchTab(tab.id)">
-          {{ tab.label }}
-        </button>
-      </div>
-      
       <div class="login-form">
-        <div v-if="activeTab === 'candidate'" class="form-group">
-          <label for="tc">T.C. Kimlik No</label>
+        <div class="form-group">
+          <label for="tc">T.C. Kimlik numarası </label>
           <input 
             type="text" 
             id="tc" 
             v-model="credentials.tc" 
-            placeholder="T.C. Kimlik Numaranızı Giriniz"
-            maxlength="11" />
-        </div>
-        
-        <div v-if="activeTab !== 'candidate'" class="form-group">
-          <label for="schoolNo">Okul Numarası</label>
-          <input 
-            type="text" 
-            id="schoolNo" 
-            v-model="credentials.schoolNo" 
-            placeholder="Okul Numaranızı Giriniz" />
+            placeholder="T.C. Kimlik numarası" />
         </div>
         
         <div class="form-group">
@@ -63,7 +43,7 @@
           </button>
           <div class="help-links">
             <a href="#" @click.prevent="forgotPassword">Şifremi Unuttum</a>
-            <a href="#" @click.prevent="register" v-if="activeTab === 'candidate'">Kayıt Ol</a>
+            <a href="#" @click.prevent="register">Kayıt Ol</a>
           </div>
         </div>
         
@@ -81,43 +61,20 @@ import axios from 'axios';
 
 interface Credentials {
   tc: string;
-  schoolNo: string;
   password: string;
-}
-
-interface LoginTab {
-  id: string;
-  label: string;
 }
 
 export default defineComponent({
   name: 'LoginPage',
   
   setup() {
-    const activeTab = ref<string>('candidate');
     const showPassword = ref<boolean>(false);
     const errorMessage = ref<string>('');
     
     const credentials = reactive<Credentials>({
       tc: '',
-      schoolNo: '',
       password: ''
     });
-    
-    const loginTabs: LoginTab[] = [
-      { id: 'candidate', label: 'Aday' },
-      { id: 'admin', label: 'Admin' },
-      { id: 'manager', label: 'Yönetici' },
-      { id: 'jury', label: 'Jüri' }
-    ];
-    
-    const switchTab = (tabId: string) => {
-      activeTab.value = tabId;
-      credentials.tc = '';
-      credentials.schoolNo = '';
-      credentials.password = '';
-      errorMessage.value = '';
-    };
     
     const togglePasswordVisibility = () => {
       showPassword.value = !showPassword.value;
@@ -128,13 +85,8 @@ export default defineComponent({
         errorMessage.value = '';
         
         // Validation
-        if (activeTab.value === 'candidate' && !credentials.tc) {
-          errorMessage.value = 'Lütfen T.C. Kimlik Numaranızı giriniz';
-          return;
-        }
-        
-        if (activeTab.value !== 'candidate' && !credentials.schoolNo) {
-          errorMessage.value = 'Lütfen Okul Numaranızı giriniz';
+        if (!credentials.tc) {
+          errorMessage.value = 'Lütfen T.C. Kimlik No giriiz';
           return;
         }
         
@@ -145,8 +97,7 @@ export default defineComponent({
         
         // Prepare request data
         const requestData = {
-          userType: activeTab.value,
-          ...(activeTab.value === 'candidate' ? { tc: credentials.tc } : { schoolNo: credentials.schoolNo }),
+          tc: credentials.tc,
           password: credentials.password
         };
         
@@ -158,15 +109,8 @@ export default defineComponent({
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
           
-          // Redirect based on user type
-          const redirectMap: Record<string, string> = {
-            candidate: '/candidate/dashboard',
-            admin: '/admin/dashboard',
-            manager: '/manager/dashboard',
-            jury: '/jury/dashboard'
-          };
-          
-          window.location.href = redirectMap[activeTab.value] || '/';
+          // Redirect to dashboard
+          window.location.href = '/dashboard';
         } else {
           errorMessage.value = response.data.message || 'Giriş başarısız';
         }
@@ -182,17 +126,14 @@ export default defineComponent({
     };
     
     const register = () => {
-      // Implement registration logic for candidates
+      // Implement registration logic
       alert('Kayıt ekranına yönlendiriliyorsunuz');
     };
     
     return {
-      activeTab,
       credentials,
-      loginTabs,
       showPassword,
       errorMessage,
-      switchTab,
       togglePasswordVisibility,
       login,
       forgotPassword,
@@ -237,44 +178,6 @@ export default defineComponent({
   color: #2e7d32; /* Dark green */
   margin-bottom: 25px;
   font-size: 24px;
-}
-
-.login-tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.tab-button {
-  background: none;
-  border: none;
-  padding: 10px 5px;
-  cursor: pointer;
-  color: #757575;
-  font-weight: 500;
-  position: relative;
-  flex: 1;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.tab-button:hover {
-  color: #2e7d32;
-}
-
-.tab-button.active {
-  color: #2e7d32;
-}
-
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #2e7d32;
 }
 
 .form-group {
