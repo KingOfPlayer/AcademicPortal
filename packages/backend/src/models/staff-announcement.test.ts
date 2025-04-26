@@ -5,6 +5,8 @@ import { DisciplineActivityRule } from "./discipline-activity-rule";
 import { DisciplinePointRule } from "./discipline-point-rule";
 import { DisciplinePosition } from "./disicpline-utils";
 import { ActivityCategory } from "./activity-category";
+import { IUser, User, UserRoles } from "./user";
+import { exp } from "mathjs";
 
 describe("StaffAnnouncement", async () => {
     afterAll(async () => {
@@ -59,10 +61,23 @@ describe("StaffAnnouncement", async () => {
             ]
         });
         await disciplineRules.save();
+
+        const user = new User({
+            name: "Test User",
+            surname: "Test Surname",
+            email: "test@test.com",
+            password: "testpassword",
+            id_number: 12345678901,
+            roles: UserRoles.Jury,
+            bornYear: 1990,
+            age: 33,
+        });
+        await user.save();
     });
 
     it('Create a new staff announcement', async () => {
         const disciplineRules = await DisciplineRule.find({});
+        const jury = await User.findOne({ roles: UserRoles.Jury });
 
         const staffAnnouncement = new StaffAnnouncement({
             title: "Test Title",
@@ -70,9 +85,18 @@ describe("StaffAnnouncement", async () => {
             startDate: new Date(),
             endDate: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day from now
             disciplineRules: disciplineRules,
+            juries: [jury],
         });
 
         await staffAnnouncement.save();
+    });
+
+    it("Get staff announcement juries", async () => {
+        const staffAnnouncement = await StaffAnnouncement.findOne({ title: "Test Title" }).populate<{juries:IUser[]}>("juries");
+        expect(staffAnnouncement).toBeDefined();
+        expect(staffAnnouncement!.juries.length).toBeGreaterThan(0);
+        console.log(staffAnnouncement!.juries);
+        expect(staffAnnouncement!.juries[0].name).toBe("Test User");
     });
 
     it('Get all staff announcements', async () => {

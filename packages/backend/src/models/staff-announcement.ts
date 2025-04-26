@@ -1,7 +1,8 @@
-import { model, Schema, SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition, SchemaType, SchemaTypes, Types } from "mongoose";
 import { DisciplineRuleSchema, IDisciplineRule } from "./discipline-rule";
 import { DisciplineActivityRuleSchema } from "./discipline-activity-rule";
 import { Appeal } from "./appeal";
+import { IUser } from "./user";
 
 export interface IStaffAnnouncement {
     title: string;
@@ -11,6 +12,8 @@ export interface IStaffAnnouncement {
     createdAt: Date;
     updatedAt: Date;
     disciplineRules?: IDisciplineRule[];
+
+    juries: Types.ObjectId[];
 }
 
 const StaffAnnouncementSchemaOptions: SchemaDefinition<IStaffAnnouncement> = {
@@ -21,6 +24,7 @@ const StaffAnnouncementSchemaOptions: SchemaDefinition<IStaffAnnouncement> = {
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     disciplineRules: { type: [DisciplineRuleSchema], required: true},
+    juries: [{ type: SchemaTypes.ObjectId, required: true, ref: "users" }],
 };
 
 export const StaffAnnouncementSchema = new Schema<IStaffAnnouncement>(
