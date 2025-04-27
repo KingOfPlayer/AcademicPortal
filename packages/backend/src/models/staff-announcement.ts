@@ -5,6 +5,7 @@ import { Appeal } from "./appeal";
 import { IUser } from "./user";
 
 export interface IStaffAnnouncement {
+    _id?: Types.ObjectId;
     title: string;
     content: string;
     startDate: Date;
@@ -13,7 +14,7 @@ export interface IStaffAnnouncement {
     updatedAt: Date;
     disciplineRules?: IDisciplineRule[];
 
-    juries: Types.ObjectId[];
+    juries: Types.ObjectId[] | IUser[];
 }
 
 const StaffAnnouncementSchemaOptions: SchemaDefinition<IStaffAnnouncement> = {
@@ -24,7 +25,7 @@ const StaffAnnouncementSchemaOptions: SchemaDefinition<IStaffAnnouncement> = {
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     disciplineRules: { type: [DisciplineRuleSchema], required: true},
-    juries: [{ type: SchemaTypes.ObjectId, required: true, ref: "users" }],
+    juries: [{ type: SchemaTypes.ObjectId, ref: "users" }],
 };
 
 export const StaffAnnouncementSchema = new Schema<IStaffAnnouncement>(
