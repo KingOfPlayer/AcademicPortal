@@ -16,19 +16,20 @@ export const GetStaffAnnouncements = async ():Promise<StaffAnnouncementDTO[]> =>
     return await StaffAnnouncement.find({}).sort({ createdAt: -1 });
 }
 
-export const GetStaffAnnouncementById = async (id: Types.ObjectId):Promise<StaffAnnouncementDTO | null> => {
-    return await StaffAnnouncement.findById(id);
+export const GetStaffAnnouncementById = async (id: string):Promise<StaffAnnouncementDTO | null> => {
+    const _id = new Types.ObjectId(id);
+    return await StaffAnnouncement.findById(_id);
 }
 
-export const UpdateStaffAnnouncement = async (id: Types.ObjectId, staffAnnouncement: StaffAnnouncementDTO):Promise<StaffAnnouncementDTO | null>  => {
+export const UpdateStaffAnnouncement = async (id: string, staffAnnouncement: StaffAnnouncementDTO):Promise<StaffAnnouncementDTO | null>  => {
     return await StaffAnnouncement.findByIdAndUpdate(id, staffAnnouncement, { new: true });
 }
 
-export const DeleteStaffAnnouncement = async (id: Types.ObjectId):Promise<StaffAnnouncementDTO | null>  => {
+export const DeleteStaffAnnouncement = async (id: string):Promise<StaffAnnouncementDTO | null>  => {
     return await StaffAnnouncement.findByIdAndDelete(id);
 }
 
-export const GetJuriesFromStaffAnnouncement = async (id: Types.ObjectId):Promise<UserDTO[]> => {
+export const GetJuriesFromStaffAnnouncement = async (id: string):Promise<UserDTO[]> => {
     const staffAnnouncement = await StaffAnnouncement.findById(id).populate<{juries:IUser[]}>("juries");
     if (!staffAnnouncement) {
         throw new Error("Staff announcement not found");
@@ -48,7 +49,7 @@ export const GetStaffAnnouncementsByJuryIdNumber = async (id_number: number):Pro
     return staffAnnouncements;
 }
 
-export const UpdateDisciplineRulesAtStaffAnnouncement = async (id: Types.ObjectId):Promise<StaffAnnouncementDTO | null> => {
+export const UpdateDisciplineRulesAtStaffAnnouncement = async (id: string):Promise<StaffAnnouncementDTO | null> => {
     const disciplineRules = await DisciplineRule.find({});
     if (!disciplineRules) {
         throw new Error("Discipline rules not found");

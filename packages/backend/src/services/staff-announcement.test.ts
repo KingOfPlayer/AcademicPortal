@@ -74,7 +74,7 @@ describe("Staff Announcement Service Test", () => {
         expect(staffAnnouncements).toBeDefined();
         expect(staffAnnouncements.length).toBeGreaterThan(0);
         const staffAnnouncement = staffAnnouncements[0];
-        const staffAnnouncementById = await GetStaffAnnouncementById(staffAnnouncement._id!);
+        const staffAnnouncementById = await GetStaffAnnouncementById(staffAnnouncement._id!.toString());
         expect(staffAnnouncementById).toBeDefined();
         expect(staffAnnouncementById?._id).toEqual(staffAnnouncement._id);
     });
@@ -92,7 +92,7 @@ describe("Staff Announcement Service Test", () => {
     it("Get Juries From Staff Announcement", async () => {
         const staffAnnouncements = await GetStaffAnnouncements();
         expect(staffAnnouncements).toBeDefined();
-        const juries = await GetJuriesFromStaffAnnouncement(staffAnnouncements[0]._id!);
+        const juries = await GetJuriesFromStaffAnnouncement(staffAnnouncements[0]._id!.toString());
         expect(juries).toBeDefined();
         expect(juries.length).toBeGreaterThan(0);
     });
@@ -111,7 +111,7 @@ describe("Staff Announcement Service Test", () => {
             updatedAt: new Date(),
             juries: []
         };
-        const updatedStaffAnnouncementResult = await UpdateStaffAnnouncement(staffAnnouncement._id!, updatedStaffAnnouncement);
+        const updatedStaffAnnouncementResult = await UpdateStaffAnnouncement(staffAnnouncement._id!.toString(), updatedStaffAnnouncement);
         expect(updatedStaffAnnouncementResult).toBeDefined();
         expect(updatedStaffAnnouncementResult?.title).toEqual(updatedStaffAnnouncement.title);
         expect(updatedStaffAnnouncementResult?.juries).toEqual([]);
@@ -119,7 +119,7 @@ describe("Staff Announcement Service Test", () => {
 
     it("Update Discipline Rules At Staff Announcement", async () => {
         const staffAnnouncements = await GetStaffAnnouncements();
-        const updatedstaffAnnouncements = await UpdateDisciplineRulesAtStaffAnnouncement(staffAnnouncements[0]._id!);
+        const updatedstaffAnnouncements = await UpdateDisciplineRulesAtStaffAnnouncement(staffAnnouncements[0]._id!.toString());
         expect(updatedstaffAnnouncements).toBeDefined();
         expect(updatedstaffAnnouncements?.disciplineRules).toBeDefined();
         expect(updatedstaffAnnouncements?.disciplineRules!.length).toBeGreaterThan(0);
@@ -130,7 +130,7 @@ describe("Staff Announcement Service Test", () => {
         expect(staffAnnouncements).toBeDefined();
         expect(staffAnnouncements.length).toBeGreaterThan(0);
         const staffAnnouncement = staffAnnouncements[0];
-        await DeleteStaffAnnouncement(staffAnnouncement._id!);
+        await DeleteStaffAnnouncement(staffAnnouncement._id!.toString());
         const afterStaffAnnouncements = await GetStaffAnnouncements();
         expect(afterStaffAnnouncements).toBeDefined();
         expect(afterStaffAnnouncements.length).toBeLessThan(staffAnnouncements.length);

@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { FastifyAuthPlugin } from "../../../plugins/auth-plugin";
 import {
+  AddDisciplineRule,
   GetAllDisciplineRules,
   GetDisciplineRule,
   UpdateDisciplineRule,
@@ -11,7 +12,7 @@ import { DisciplineRuleDTO } from "../../../models/dtos/academic-staff-disciplin
 export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
   //Return user info
   fastify.get(
-    "/",
+    "/:DisciplineName",
     { preHandler: [fastify.authentication()] },
     async (request, reply) => {
       const { DisciplineName } = request.query as { DisciplineName: string };
@@ -23,6 +24,15 @@ export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
     },
   );
 
+  fastify.post<{ Body: DisciplineRuleDTO }>(
+    "/",
+    { preHandler: [fastify.authentication([UserRoles.Admin])] },
+    async (request, reply) => {
+      await AddDisciplineRule(request.body);
+      return reply.status(200).send({ message: "Discipline rule added" });
+    }
+  );
+
   fastify.put<{ Body: DisciplineRuleDTO }>(
     "/",
     { preHandler: [fastify.authentication([UserRoles.Admin])] },
@@ -30,7 +40,9 @@ export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
       const { DisciplineName } = request.query as { DisciplineName: string };
       if (DisciplineName == null) return reply.status(400);
       await UpdateDisciplineRule(DisciplineName, request.body);
-      return reply.status(200);
+      return reply.status(200).send({
+        message: "Discipline rule updated",
+      });
     },
   );
 }
