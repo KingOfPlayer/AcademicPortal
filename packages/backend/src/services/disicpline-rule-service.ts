@@ -10,15 +10,11 @@ export const UpdateDisciplineRule = async (
   disciplineRuleName: string,
   disciplineRule: DisciplineRuleDTO,
 ) => {
-  const rule = await DisciplineRule.findOne({
-    disiciplineName: disciplineRuleName,
-  });
-
-  if (rule == null)
-    throw new Error("When Discipline rules update, disciplineRules not found");
-
-  rule!.$set(disciplineRule);
-  await rule!.save();
+  await DisciplineRule.findOneAndUpdate(
+    { disiciplineName: disciplineRuleName },
+    { $set: disciplineRule },
+    { new: true },
+  );
 };
 
 export const GetDisciplineRule = async (

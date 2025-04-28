@@ -1,4 +1,4 @@
-### Get all disicpline-rules
+### Get all disicpline-rule
 GET http://localhost:3000/api/v1/disicpline-rule/
 Authorization: Bearer ***
 
@@ -6,7 +6,31 @@ Authorization: Bearer ***
 GET http://localhost:3000/api/v1/disicpline-rule/?DisciplineName=Sağlık Bilimleri 2
 Authorization: Bearer ***
 
-###
+### Create a disicpline-rule
+POST http://localhost:3000/api/v1/disicpline-rule/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9udW1iZXIiOjM1MzM4ODY2Mzk0LCJpYXQiOjE3NDU0MDU3NDYsImV4cCI6MTc3MTMyNTc0Nn0.m8Vklja4WEs8nYs1fnqEXkXM3QjD19iSwayETe2Gr-4
+Content-Type: application/json
+
+{
+  "disiciplineName": "***",
+  "activityRules": [
+    {
+      "expression": "A1-A2",
+      "positionType": "AssociateProfessor",
+      "minimumCount": 200
+    }
+  ],
+  "pointRules": [
+    {
+      "expression": "A1-A4",
+      "positionType": "Lecturer",
+      "minPoint": 0,
+      "maxPoint": 0
+    }
+  ]
+}
+
+### Update a disicpline-rule
 PUT http://localhost:3000/api/v1/disicpline-rule/?DisciplineName=Sağlık Bilimleri 35
 Authorization: Bearer ***
 Content-Type: application/json
@@ -27,6 +51,5 @@ Content-Type: application/json
       "minPoint": 0,
       "maxPoint": 0
     }
-  ],
-  "__v": 1
+  ]
 }

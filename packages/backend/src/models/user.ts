@@ -1,4 +1,4 @@
-import { Schema, SchemaDefinition, model } from "mongoose";
+import { Schema, SchemaDefinition, Types, model } from "mongoose";
 
 //TODO:
 // Password Hashing
@@ -14,6 +14,7 @@ export enum UserRoles {
 }
 
 export interface IUser {
+  _id?: Types.ObjectId;
   roles?: UserRoles[];
 
   id_number?: number;

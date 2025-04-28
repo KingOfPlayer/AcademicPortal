@@ -8,7 +8,6 @@ import { PointTableDTO } from "../models/dtos/point-table-dto";
 import { PointMultiplier } from "../models/point-multiplier";
 
 describe("Point Service Test", () => {
-  
   afterAll(async () => {
     PointMultiplier.deleteMany();
   });

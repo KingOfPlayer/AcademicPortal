@@ -1,16 +1,14 @@
 import { evaluate } from "mathjs";
 import { Model, model, Schema, SchemaDefinition } from "mongoose";
 
-type PeopleCountRange = string & { __brand: typeof _validateRange };
-
-const _validateRange = (range: string): string => {
+const _validateRange = (range: string) => {
   let convertedNumber: number;
   //type 1 (123)
   if (/^\d+$/gm.test(range)) {
     convertedNumber = +range;
     if (convertedNumber! < 0)
       throw new Error("Type 1 / Range not be able to zero or below");
-    return range;
+    return;
   }
   //type 2 (1-2)
   if (/^\d+-\d+$/gm.test(range)) {
@@ -21,54 +19,60 @@ const _validateRange = (range: string): string => {
     if (min < max) {
       throw new Error("Type 3 / Maximum cannot be below the minimum");
     }
-    return range;
+    return;
   }
   //type 3 (+3)
-  if (/^\d+$/gm.test(range)) {
+  if (/^[+]\d+$/gm.test(range)) {
     convertedNumber = +range;
     if (convertedNumber! < 0)
       throw new Error("Type 3 / Range not be able to zero or below");
-    return range;
+    return;
   }
   throw new Error("Range is not valid");
 };
 
 export interface IPointMultiplier {
-  peopleCountCondition: PeopleCountRange;
+  peopleCountCondition: string;
   multiplier: string;
 }
 
-interface IPointTableMethods {
-  MatchRange(PeopleCount: number): boolean;
-  EvaluateMultiplier(PeopleCount: number): number;
+interface PointMultiplierModel extends Model<IPointMultiplier> {
+  MatchRange(PointMultiplier: IPointMultiplier, PeopleCount: number): boolean;
+  EvaluateMultiplier(
+    PointMultiplier: IPointMultiplier,
+    PeopleCount: number,
+  ): number;
 }
 
-type PointMultiplierModel = Model<IPointMultiplier, "", IPointTableMethods>;
-
 const PointMultiplierSchemaOptions: SchemaDefinition = {
-  peopleCountCondition: { type: String, required: true },
+  peopleCountCondition: {
+    type: String,
+    required: true,
+    validate: _validateRange,
+  },
   multiplier: { type: String, required: true },
 };
 
 export const PointMultiplierSchema = new Schema<
   IPointMultiplier,
-  "",
-  IPointTableMethods
+  PointMultiplierModel
 >(PointMultiplierSchemaOptions, { autoCreate: false, autoIndex: false });
 
 const _MatchRange = function (
-  this: IPointMultiplier,
+  PointMultiplier: IPointMultiplier,
   PeopleCount: number,
 ): boolean {
   //Type 2
-  if (this.peopleCountCondition.includes("-")) {
-    const [min, max] = this.peopleCountCondition.split("-").map(Number);
+  if (PointMultiplier.peopleCountCondition.includes("-")) {
+    const [min, max] = PointMultiplier.peopleCountCondition
+      .split("-")
+      .map(Number);
     return min <= PeopleCount && max >= PeopleCount;
   }
 
   //Type 3
-  const convertedNumber = +this.peopleCountCondition;
-  if (this.peopleCountCondition.includes("+")) {
+  const convertedNumber = +PointMultiplier.peopleCountCondition;
+  if (PointMultiplier.peopleCountCondition.includes("+")) {
     return convertedNumber <= PeopleCount;
   }
 
@@ -77,14 +81,14 @@ const _MatchRange = function (
 };
 
 const _EvaluateMultiplier = function (
-  this: IPointMultiplier,
+  PointMultiplier: IPointMultiplier,
   PeopleCount: number,
 ): number {
-  return evaluate(this.multiplier, { people: PeopleCount });
+  return evaluate(PointMultiplier.multiplier, { people: PeopleCount });
 };
 
-PointMultiplierSchema.method("MatchRange", _MatchRange);
-PointMultiplierSchema.method("EvaluateMultiplier", _EvaluateMultiplier);
+PointMultiplierSchema.static("MatchRange", _MatchRange);
+PointMultiplierSchema.static("EvaluateMultiplier", _EvaluateMultiplier);
 
 export const PointMultiplier = model<IPointMultiplier, PointMultiplierModel>(
   "point_multiplier",
