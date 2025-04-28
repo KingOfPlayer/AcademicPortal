@@ -65,10 +65,12 @@ export const DisciplinePointRuleSchemaOptions: SchemaDefinition<IDisciplinePoint
     },
   };
 
-export const DisciplinePointRuleSchema =
-  new Schema<IDisciplinePointRule>(DisciplinePointRuleSchemaOptions, {
+export const DisciplinePointRuleSchema = new Schema<IDisciplinePointRule>(
+  DisciplinePointRuleSchemaOptions,
+  {
     autoCreate: false,
-  });
+  },
+);
 
 export const DisciplinePointRule = model<IDisciplinePointRule>(
   "academic_staff_point_rules",

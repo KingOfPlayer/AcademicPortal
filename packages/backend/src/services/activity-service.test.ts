@@ -15,7 +15,7 @@ describe("ActivityCategory Service Test", () => {
   afterAll(async () => {
     ActivityCategory.deleteMany();
   });
-  
+
   it("AddActivityCategory", async () => {
     const Category = new ActivityCategory({
       Code: "A",

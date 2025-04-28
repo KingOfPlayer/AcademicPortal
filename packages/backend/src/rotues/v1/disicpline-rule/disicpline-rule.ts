@@ -30,7 +30,7 @@ export default async function (fastify: FastifyInstance & FastifyAuthPlugin) {
     async (request, reply) => {
       await AddDisciplineRule(request.body);
       return reply.status(200).send({ message: "Discipline rule added" });
-    }
+    },
   );
 
   fastify.put<{ Body: DisciplineRuleDTO }>(
