@@ -95,7 +95,6 @@ describe("StaffAnnouncement", async () => {
     }).populate<{ juries: IUser[] }>("juries");
     expect(staffAnnouncement).toBeDefined();
     expect(staffAnnouncement!.juries.length).toBeGreaterThan(0);
-    console.log(staffAnnouncement!.juries);
     expect(staffAnnouncement!.juries[0].name).toBe("Test User");
   });
 

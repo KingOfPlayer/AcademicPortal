@@ -1,14 +1,14 @@
 import { evaluate } from "mathjs";
 import { Model, model, Schema, SchemaDefinition } from "mongoose";
 
-const _validateRange = (range: string): string => {
+const _validateRange = (range: string) => {
   let convertedNumber: number;
   //type 1 (123)
   if (/^\d+$/gm.test(range)) {
     convertedNumber = +range;
     if (convertedNumber! < 0)
       throw new Error("Type 1 / Range not be able to zero or below");
-    return range;
+    return;
   }
   //type 2 (1-2)
   if (/^\d+-\d+$/gm.test(range)) {
@@ -19,14 +19,14 @@ const _validateRange = (range: string): string => {
     if (min < max) {
       throw new Error("Type 3 / Maximum cannot be below the minimum");
     }
-    return range;
+    return;
   }
   //type 3 (+3)
-  if (/^\d+$/gm.test(range)) {
+  if (/^[+]\d+$/gm.test(range)) {
     convertedNumber = +range;
     if (convertedNumber! < 0)
       throw new Error("Type 3 / Range not be able to zero or below");
-    return range;
+    return;
   }
   throw new Error("Range is not valid");
 };

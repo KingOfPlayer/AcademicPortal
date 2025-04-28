@@ -13,20 +13,17 @@ const PointTableSchemaOptions: SchemaDefinition = {
   pointMultipliers: { type: [PointMultiplierSchema], required: true },
 };
 
-interface IPointTableMethods {
-  GetPointMultiplier(PeopleCount: number): number;
+interface PointTableModel extends Model<IPointTable> {
+  GetPointMultiplier(PointMultipliers:IPointMultiplier[], PeopleCount: number): number;
 }
-
-type PointTableModel = Model<IPointTable, {}, IPointTableMethods>;
 
 const PointTableSchema = new Schema<
   IPointTable,
-  PointTableModel,
-  IPointTableMethods
+  PointTableModel
 >(PointTableSchemaOptions);
 
-PointTableSchema.method("GetPointMultiplier", function (PeopleCount: number) {
-  const pointMultiplier = this.pointMultipliers.find((v: IPointMultiplier) => {
+PointTableSchema.static("GetPointMultiplier", function (PointMultipliers:IPointMultiplier[], PeopleCount: number) {
+  const pointMultiplier = PointMultipliers.find((v: IPointMultiplier) => {
     return PointMultiplier.MatchRange(v, PeopleCount);
   });
 
