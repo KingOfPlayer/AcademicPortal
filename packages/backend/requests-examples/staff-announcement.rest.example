@@ -1,0 +1,49 @@
+### Get all staff announcements (auth requied)
+GET http://localhost:3000/api/v1/staff-announcement/
+Authorization: Bearer ***
+Content-Type: application/json
+
+### Get a specific staff announcement (auth requied)
+GET http://localhost:3000/api/v1/staff-announcement/680e7c0c7fcdd40ea9a336e6
+Authorization: Bearer ***
+Content-Type: application/json
+
+### Create a new staff announcement (auth requied, admin)
+POST http://localhost:3000/api/v1/staff-announcement/
+Authorization: Bearer ***
+Content-Type: application/json
+
+{
+  "juries": [],
+  "title": "Test Title",
+  "content": "Test Content",
+  "startDate": "2025-04-24T10:59:42.517Z",
+  "endDate": "2025-04-25T10:59:42.517Z",
+  "disciplineRules": [],
+  "createdAt": "2025-04-24T10:59:42.528Z",
+  "updatedAt": "2025-04-24T10:59:42.528Z",
+  "__v": 0
+}
+
+### Update a staff announcement (auth requied, admin/administrator)
+PUT http://localhost:3000/api/v1/staff-announcement/680e7a404c85abd595f66d60
+Authorization: Bearer ***
+Content-Type: application/json
+
+{
+  "juries": [],
+  "title": "Test Title 2",
+  "content": "Test Content",
+  "startDate": "2025-04-24T10:59:42.517Z",
+  "endDate": "2025-04-25T10:59:42.517Z",
+  "disciplineRules": [],
+  "createdAt": "2025-04-24T10:59:42.528Z",
+  "updatedAt": "2025-04-24T10:59:42.528Z",
+  "__v": 0
+}
+### Update discipline rules for a staff announcement (auth requied, admin/administrator)
+PUT http://localhost:3000/api/v1/staff-announcement/update/discipline-rules/680e7c0c7fcdd40ea9a336e6
+Authorization: Bearer ***
+### Delete a staff announcement (auth requied)
+DELETE http://localhost:3000/api/v1/staff-announcement/680e7a404c85abd595f66d60
+Authorization: Bearer ***

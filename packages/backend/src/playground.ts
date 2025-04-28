@@ -1,30 +1,97 @@
-import "./services/database-service";
+// import { DisciplineActivityRule } from "./models/discipline-activity-rule";
+// import { DisciplinePointRule } from "./models/discipline-point-rule";
+// import { DisciplineRule } from "./models/discipline-rule";
+// import { DisciplinePosition } from "./models/disicpline-utils";
+// import { StaffAnnouncement } from "./models/staff-announcement";
+// import "./services/database-service";
+
+// // DisciplineRule Test
+// (async () => {
+//     // const disciplineRules = new DisciplineRule({
+//     //             disiciplineName: "Test Rule",
+//     //             description: "Test Rule Description",
+//     //             activityRules: [
+//     //                 new DisciplineActivityRule({
+//     //                     activityName: "Test Activity 1",
+//     //                     positionType: DisciplinePosition.Lecturer,
+//     //                     expression: "A1",
+//     //                     minimumCount: 1
+//     //                 }),
+//     //                 new DisciplineActivityRule({
+//     //                     activityName: "Test Activity 1",
+//     //                     positionType: DisciplinePosition.AssociateProfessor,
+//     //                     expression: "A2",
+//     //                     minimumCount: 1
+//     //                 }),
+//     //                 new DisciplineActivityRule({
+//     //                     activityName: "Test Activity 1",
+//     //                     positionType: DisciplinePosition.Professor,
+//     //                     expression: "A3",
+//     //                     minimumCount: 1
+//     //                 }),
+//     //             ],
+//     //             pointRules: [
+//     //                 new DisciplinePointRule({
+//     //                     expression: "A1",
+//     //                     positionType: DisciplinePosition.Lecturer,
+//     //                     minPoint: 0,
+//     //                     maxPoint: 100
+//     //                 }),
+//     //                 new DisciplinePointRule({
+//     //                     expression: "A2",
+//     //                     positionType: DisciplinePosition.AssociateProfessor,
+//     //                     minPoint: 0,
+//     //                     maxPoint: 100
+//     //                 }),
+//     //                 new DisciplinePointRule({
+//     //                     expression: "A3",
+//     //                     positionType: DisciplinePosition.Professor,
+//     //                     minPoint: 0,
+//     //                     maxPoint: 100
+//     //                 })
+//     //             ]
+//     //         });
+//     //         await disciplineRules.save();
+//     // const disciplineRules = await DisciplineRule.find({});
+
+//     //         const staffAnnouncement = new StaffAnnouncement({
+//     //             title: "Test Title",
+//     //             content: "Test Content",
+//     //             startDate: new Date(),
+//     //             endDate: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day from now
+//     //             disciplineRules: disciplineRules,
+//     //         });
+
+//     //         await staffAnnouncement.save();
+//     const disciplineRules = await DisciplineRule.find({});
+//     console.log(disciplineRules);
+// })();
 
 //DisciplineRules service Test
 
-// import { AcademicStaffActivityRules } from "./models/academic-staff-activity-rules";
-// import { AcademicStaffDisciplineRules } from "./models/academic-staff-discipline-rules";
+// import { DisciplineActivityRule } from "./models/academic-staff-activity-rules";
+// import { DisciplineRule } from "./models/academic-staff-discipline-rules";
 // import { StaffPosition } from "./models/academic-staff-disicpline-utils";
-// import { AcademicStaffPointRules } from "./models/academic-staff-point-rules";
-// import { AcademicStaffDisciplineRulesDTO } from "./models/dtos/academic-staff-discipline-rules-dto";
+// import { DisciplinePointRule } from "./models/academic-staff-point-rules";
+// import { DisciplineRuleDTO } from "./models/dtos/academic-staff-discipline-rules-dto";
 // import { AddDisciplineRule, GetAllDisciplineRule, GetDisciplineRule, UpdateDisciplineRule } from "./services/disicpline-rule-service";
 
 // (async () => {
-//     let staffDisciplineDTO = new AcademicStaffDisciplineRules({
+//     let staffDisciplineDTO = new DisciplineRule({
 //                 disiciplineName: "Sağlık Bilimleri 2",
 //                 activityRules: [
-//                     new AcademicStaffActivityRules({
+//                     new DisciplineActivityRule({
 //                         expression: "A1-A2",
 //                         positionType: StaffPosition.AssociateProfessor,
 //                         minimumCount: 200,
 //                     }),
 //                 ],
 //                 pointRules: [
-//                     new AcademicStaffPointRules({
+//                     new DisciplinePointRule({
 //                         expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
 //                     }),
 //                 ]
-//             }) as AcademicStaffDisciplineRulesDTO;
+//             }) as DisciplineRuleDTO;
 //     try{
 //         await AddDisciplineRule(staffDisciplineDTO);
 //     }catch{
@@ -34,24 +101,24 @@ import "./services/database-service";
 //     console.log(await GetAllDisciplineRule());
 // })()
 
-//AcademicStaffDisciplineRules Model Test
-// import { AcademicStaffActivityRules } from "./models/academic-staff-activity-rules";
-// import { AcademicStaffDisciplineRules } from "./models/academic-staff-discipline-rules";
-// import { AcademicStaffPointRules } from "./models/academic-staff-point-rules";
+//DisciplineRule Model Test
+// import { DisciplineActivityRule } from "./models/academic-staff-activity-rules";
+// import { DisciplineRule } from "./models/academic-staff-discipline-rules";
+// import { DisciplinePointRule } from "./models/academic-staff-point-rules";
 // import { StaffPosition } from "./models/academic-staff-disicpline-utils";
 
 // (async () => {
-//     const staffDiscipline = new AcademicStaffDisciplineRules({
+//     const staffDiscipline = new DisciplineRule({
 //         description: "Sağlık Bilimleri",
 //         activityRules: [
-//             new AcademicStaffActivityRules({
+//             new DisciplineActivityRule({
 //                 expression: "A1-A2",
 //                 positionType: StaffPosition.AssociateProfessor,
 //                 minimumCount: 200,
 //             }),
 //         ],
 //         pointRules: [
-//             new AcademicStaffPointRules({
+//             new DisciplinePointRule({
 //                 expression: "A1-A4", positionType: StaffPosition.Lecturer, minPoint: 0, maxPoint: 0
 //             }),
 //         ]
@@ -59,7 +126,7 @@ import "./services/database-service";
 
 //     await staffDiscipline.save();
 
-//     console.log(await AcademicStaffActivityRules.findOne());
+//     console.log(await DisciplineActivityRule.findOne());
 // })();
 
 // import { UserDTO } from "./models/dtos/user-dto";

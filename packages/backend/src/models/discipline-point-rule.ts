@@ -1,7 +1,8 @@
-import { SchemaDefinition, model, Schema } from "mongoose";
+import { SchemaDefinition, model, Schema, Types } from "mongoose";
 import { DisciplinePosition } from "./disicpline-utils";
 
 export interface IDisciplinePointRule {
+  _id?: Types.ObjectId;
   expression: string;
   positionType: DisciplinePosition;
   minPoint: number;
@@ -65,10 +66,12 @@ export const DisciplinePointRuleSchemaOptions: SchemaDefinition<IDisciplinePoint
     },
   };
 
-export const DisciplinePointRuleSchema =
-  new Schema<IDisciplinePointRule>(DisciplinePointRuleSchemaOptions, {
+export const DisciplinePointRuleSchema = new Schema<IDisciplinePointRule>(
+  DisciplinePointRuleSchemaOptions,
+  {
     autoCreate: false,
-  });
+  },
+);
 
 export const DisciplinePointRule = model<IDisciplinePointRule>(
   "academic_staff_point_rules",

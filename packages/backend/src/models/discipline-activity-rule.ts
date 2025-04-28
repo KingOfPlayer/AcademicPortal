@@ -1,7 +1,8 @@
-import { model, Schema, SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition, Types } from "mongoose";
 import { DisciplinePosition } from "./disicpline-utils";
 
 export interface IDisciplineActivityRule {
+  _id?: Types.ObjectId;
   expression: string;
   positionType: DisciplinePosition;
   minimumCount: number;

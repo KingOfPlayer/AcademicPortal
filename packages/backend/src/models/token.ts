@@ -1,6 +1,7 @@
-import { Schema, SchemaDefinition, model } from "mongoose";
+import { Schema, SchemaDefinition, Types, model } from "mongoose";
 
 export interface IToken {
+  _id?: Types.ObjectId;
   token?: string;
 }
 

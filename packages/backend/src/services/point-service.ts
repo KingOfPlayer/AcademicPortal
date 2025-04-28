@@ -23,5 +23,8 @@ export async function GetPointMultiplier(PeopleCount: number): Promise<number> {
 
   if (pointTable == null) throw new Error("PointTable Not Found");
 
-  return pointTable.GetPointMultiplier(PeopleCount);
+  return PointTable.GetPointMultiplier(
+    pointTable.pointMultipliers,
+    PeopleCount,
+  );
 }
