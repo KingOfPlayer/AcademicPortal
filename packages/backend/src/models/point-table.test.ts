@@ -31,7 +31,11 @@ describe("Point Table Test", () => {
     const pointTable = await PointTable.findOne();
     expect(pointTable).toBeDefined();
     expect(pointTable?.pointMultipliers[4].peopleCountCondition).toBe("5-9");
-    expect(PointTable.GetPointMultiplier(pointTable!.pointMultipliers,4)).toBe(0.5);
-    expect(PointTable.GetPointMultiplier(pointTable!.pointMultipliers,5)).toBe(1 / 5);
+    expect(PointTable.GetPointMultiplier(pointTable!.pointMultipliers, 4)).toBe(
+      0.5,
+    );
+    expect(PointTable.GetPointMultiplier(pointTable!.pointMultipliers, 5)).toBe(
+      1 / 5,
+    );
   });
 });

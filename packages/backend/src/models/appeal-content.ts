@@ -1,4 +1,4 @@
-import mongoose, { Schema, SchemaDefinition } from "mongoose";
+import mongoose, { Schema, SchemaDefinition, Types } from "mongoose";
 
 interface IAppealContentActivityType {
   categoryCode: string;
@@ -6,6 +6,7 @@ interface IAppealContentActivityType {
 }
 
 export interface IAppealContent {
+  _id?: Types.ObjectId;
   content: string;
   contentPath: string;
   createdAt: Date;

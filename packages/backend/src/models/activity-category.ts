@@ -1,7 +1,8 @@
-import { Schema, SchemaDefinition, model } from "mongoose";
+import { Schema, SchemaDefinition, Types, model } from "mongoose";
 import { IActivity, ActivitySchema } from "./activity";
 
 export interface IActivityCategory {
+  _id?: Types.ObjectId;
   Code: string;
   sectionName: string;
   isActive: boolean;

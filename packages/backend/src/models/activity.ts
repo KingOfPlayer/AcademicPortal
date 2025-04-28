@@ -1,6 +1,7 @@
-import { model, Schema, SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition, Types } from "mongoose";
 
 export interface IActivity {
+  _id?: Types.ObjectId;
   ID: number;
   description: string;
   point: number;

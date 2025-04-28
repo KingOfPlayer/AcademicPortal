@@ -2,6 +2,7 @@ import { model, Schema, SchemaDefinition, SchemaTypes, Types } from "mongoose";
 import { AppealContentSchema, IAppealContent } from "./appeal-content";
 
 interface IAppeal {
+  _id?: Types.ObjectId;
   announcement: Types.ObjectId;
   user: Types.ObjectId;
   appealContents: IAppealContent[];

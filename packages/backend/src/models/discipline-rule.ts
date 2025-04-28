@@ -1,4 +1,4 @@
-import { model, Schema, SchemaDefinition } from "mongoose";
+import { model, Schema, SchemaDefinition, Types } from "mongoose";
 import {
   DisciplineActivityRuleSchema,
   IDisciplineActivityRule,
@@ -9,6 +9,7 @@ import {
 } from "./discipline-point-rule";
 
 export interface IDisciplineRule {
+  _id?: Types.ObjectId;
   disiciplineName: string;
   activityRules: IDisciplineActivityRule[];
   pointRules: IDisciplinePointRule[];

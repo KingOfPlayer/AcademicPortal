@@ -1,4 +1,4 @@
-import { Schema, Model, model, SchemaDefinition } from "mongoose";
+import { Schema, Model, model, SchemaDefinition, Types } from "mongoose";
 import {
   PointMultiplier,
   IPointMultiplier,
@@ -6,6 +6,7 @@ import {
 } from "./point-multiplier";
 
 export interface IPointTable {
+  _id?: Types.ObjectId;
   pointMultipliers: IPointMultiplier[];
 }
 
@@ -14,25 +15,30 @@ const PointTableSchemaOptions: SchemaDefinition = {
 };
 
 interface PointTableModel extends Model<IPointTable> {
-  GetPointMultiplier(PointMultipliers:IPointMultiplier[], PeopleCount: number): number;
+  GetPointMultiplier(
+    PointMultipliers: IPointMultiplier[],
+    PeopleCount: number,
+  ): number;
 }
 
-const PointTableSchema = new Schema<
-  IPointTable,
-  PointTableModel
->(PointTableSchemaOptions);
+const PointTableSchema = new Schema<IPointTable, PointTableModel>(
+  PointTableSchemaOptions,
+);
 
-PointTableSchema.static("GetPointMultiplier", function (PointMultipliers:IPointMultiplier[], PeopleCount: number) {
-  const pointMultiplier = PointMultipliers.find((v: IPointMultiplier) => {
-    return PointMultiplier.MatchRange(v, PeopleCount);
-  });
+PointTableSchema.static(
+  "GetPointMultiplier",
+  function (PointMultipliers: IPointMultiplier[], PeopleCount: number) {
+    const pointMultiplier = PointMultipliers.find((v: IPointMultiplier) => {
+      return PointMultiplier.MatchRange(v, PeopleCount);
+    });
 
-  if (pointMultiplier == null) {
-    throw new Error("Suitable Multiplier");
-  }
+    if (pointMultiplier == null) {
+      throw new Error("Suitable Multiplier");
+    }
 
-  return PointMultiplier.EvaluateMultiplier(pointMultiplier, PeopleCount);
-});
+    return PointMultiplier.EvaluateMultiplier(pointMultiplier, PeopleCount);
+  },
+);
 
 export const PointTable = model<IPointTable, PointTableModel>(
   "point_table",

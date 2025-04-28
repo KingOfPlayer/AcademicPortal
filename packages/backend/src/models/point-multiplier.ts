@@ -1,5 +1,5 @@
 import { evaluate } from "mathjs";
-import { Model, model, Schema, SchemaDefinition } from "mongoose";
+import { Model, model, Schema, SchemaDefinition, Types } from "mongoose";
 
 const _validateRange = (range: string) => {
   let convertedNumber: number;
@@ -32,6 +32,7 @@ const _validateRange = (range: string) => {
 };
 
 export interface IPointMultiplier {
+  _id?: Types.ObjectId;
   peopleCountCondition: string;
   multiplier: string;
 }
