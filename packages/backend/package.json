@@ -5,23 +5,42 @@
   "scripts": {
     "build": "pnpm tsc --build",
     "start": "node ./dist/main.js",
-    "dev": "tsx watch ./src/main.ts"
+    "dev": "tsx watch ./src/main.ts",
+    "dev:pretty": "tsx watch ./src/main.ts | pino-pretty",
+    "dev:test:unit": "vitest",
+    "test:unit": "vitest run",
+    "playground": "tsx watch ./src/playground.ts",
+    "lint": "eslint ./src --fix",
+    "format": "prettier --write src/"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@eslint/js": "^9.24.0",
     "@types/dotenv": "^6.1.1",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
+    "mongodb-memory-server": "^10.1.4",
+    "prettier": "^3.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "vitest": "^3.0.5"
   },
   "dependencies": {
-    "@fastify/autoload": "^6.2.0",
+    "@fastify/autoload": "^6.3.0",
     "@types/ms": "^2.1.0",
     "dotenv": "^16.4.7",
-    "fastify": "^5.2.1",
+    "fastify": "^5.2.2",
     "fastify-plugin": "^5.0.1",
-    "mongoose": "^8.12.1",
-    "soap": "^1.1.9"
+    "mathjs": "^14.4.0",
+    "mongoose": "^8.13.2",
+    "soap": "^1.1.10"
   }
 }

@@ -1,4 +1,7 @@
+### Singup
 POST http://localhost:3000/api/v1/auth/singup
+Content-Type: application/json
+
 {
     "id_number":***,
     "name":"***",
@@ -9,8 +12,7 @@ POST http://localhost:3000/api/v1/auth/singup
     "password":"***"
 }
 
-###
-
+### Login
 POST http://localhost:3000/api/v1/auth/login
 Content-Type: application/json
 
@@ -19,13 +21,11 @@ Content-Type: application/json
     "password":"***"
 }
 
-###
-
+### Logout
 POST http://localhost:3000/api/v1/auth/logout
 Authorization: Bearer ***
 
-###
-
+### Get a reflesh token
 POST http://localhost:3000/api/v1/auth/token
 Content-Type: application/json
 
@@ -33,9 +33,19 @@ Content-Type: application/json
     "token":"***"
 }
 
-###
-
-
-
+### Get user info
 GET  http://localhost:3000/api/v1/user/info
 Authorization: Bearer ***
+
+### User role update (Admin Role) 
+# Roles need be UserRoles class
+POST  http://localhost:3000/api/v1/user/update/roles
+Authorization: Bearer ***
+Content-Type: application/json
+
+{
+    "id_number":***,
+    "roles": [
+        ***
+    ]
+}
