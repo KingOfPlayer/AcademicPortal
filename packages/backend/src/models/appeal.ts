@@ -1,10 +1,12 @@
 import { model, Schema, SchemaDefinition, SchemaTypes, Types } from "mongoose";
 import { AppealContentSchema, IAppealContent } from "./appeal-content";
+import { IStaffAnnouncement } from "./staff-announcement";
+import { IUser } from "./user";
 
-interface IAppeal {
+export interface IAppeal {
   _id?: Types.ObjectId;
-  announcement: Types.ObjectId;
-  user: Types.ObjectId;
+  announcement: Types.ObjectId | IStaffAnnouncement;
+  user: Types.ObjectId | IUser;
   appealContents: IAppealContent[];
 }
 
@@ -23,14 +25,13 @@ export const AppealSchema = new Schema<IAppeal>(AppealSchemaOptions, {
 });
 
 AppealSchema.pre("save", async function () {
-  await Appeal.exists({
+  const appeal = await Appeal.findOne({
     announcement: this.announcement._id,
     user: this.user._id,
-  }).then((exists) => {
-    if (exists) {
-      throw new Error("Appeal already exists for this announcement and user.");
-    }
   });
+  if (appeal && appeal._id.toString() !== this._id?.toString()) {
+    throw new Error("Appeal already exists for this announcement and user");
+  }
 });
 
 export const Appeal = model<IAppeal>("appeals", AppealSchema);

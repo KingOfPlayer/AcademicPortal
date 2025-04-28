@@ -16,6 +16,8 @@ import { AddDisciplineRule } from "./disicpline-rule-service";
 import { DisciplineActivityRule } from "../models/discipline-activity-rule";
 import { DisciplinePosition } from "../models/disicpline-utils";
 import { DisciplinePointRule } from "../models/discipline-point-rule";
+import { StaffAnnouncement } from "../models/staff-announcement";
+import { DisciplineRule } from "../models/discipline-rule";
 
 describe("Staff Announcement Service Test", () => {
   beforeAll(async () => {
@@ -52,6 +54,8 @@ describe("Staff Announcement Service Test", () => {
 
   afterAll(async () => {
     User.deleteMany();
+    DisciplineRule.deleteMany();
+    StaffAnnouncement.deleteMany();
   });
 
   it("Add Staff Announcement", async () => {
